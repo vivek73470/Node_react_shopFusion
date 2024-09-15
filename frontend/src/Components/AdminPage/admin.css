@@ -1,0 +1,42 @@
+
+ .page-content{
+  background-color: #f4f7fe;
+  padding: 110px 35px 35px 35px;
+ }
+ .main-admin-screen-wrapper {
+    display: flex;
+
+  }
+  
+  .admin-screen-content {
+    padding-left: 290px;
+    background-color: #f4f7fe;
+    width: 100%;
+  }
+  .main-admin-screen{
+ background-color: #f4f7fe;
+ height: 100vh;
+  }
+  .admin-page-sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    z-index: 10;
+    }
+.admin-screen-header{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+  
+  
+  @media screen and (max-width:940px){
+    .admin-page-sidebar {
+    display: none;
+    }
+    .admin-screen-content {
+      padding-left: 0px;
+    }
+
+  }
+  

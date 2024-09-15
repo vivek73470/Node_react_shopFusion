@@ -1,0 +1,58 @@
+.stupid-screen{
+    /* max-width: 99%;
+    margin: auto; */
+}
+.stutext{
+    text-align: center;
+    padding-bottom: 25px;
+}
+.collImg {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+}
+.coll-inside-stpd{
+    width: 50%;
+    margin: auto;
+}
+.collImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.banImg{
+    max-width: 100%;
+    margin: auto;
+
+}
+.banImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
+}
+@media  screen and (max-width:768px) {
+    .stutext{
+      font-size: 20px;
+    }
+}
+@media  screen and (max-width:550px) {
+    .collImg {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .coll-inside-stpd{
+        width: 100%;
+      
+    }
+}
+@media  screen and (max-width:450px) {
+    .collImg {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+    .coll-inside-stpd{
+        width: 100%;
+      
+    }
+}

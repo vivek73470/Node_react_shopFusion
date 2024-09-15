@@ -1,0 +1,138 @@
+
+  .footer-container {
+    width: 100%;
+    background-color:#3b3b3b; 
+    color: #ffffff; 
+    padding: 35px 0;
+    margin-top: 3px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    margin-bottom: 20px;
+  }
+  
+  .footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-section ul li a {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 400;
+    /* opacity: 0.8; */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+  
+  .footer-section ul li a:hover {
+    color: #e74c3c;
+    text-decoration: underline !important;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+  }
+  .your-events-searchstyle-footer {
+    display: flex;
+    flex-direction: row;
+    width: 190px;
+    background: #3b3b3b;
+    border: 1px solid #ff5757;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px 16px;
+    color: #fff;
+}
+.your-events-searchbox-head-footer {
+    text-indent: 8px;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    background: #3b3b3b;
+    color: #fff;
+}
+.span-search-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.footer-esclusive{
+font-size: 18px;
+color: #fff;
+font-weight: 700;
+}
+.footer-esclusivee{
+font-size: 18px;
+color: #ff5757;
+font-weight: 700;
+}
+.footer-subscribe-aa{
+  color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    
+}
+.footer-subscribe-aab{
+  color: #fff;
+    font-weight: 400;
+    
+}
+.footer-subscribe-aab-sb{
+  color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    
+}
+
+
+/* media query */
+
+@media screen and (max-width:710px){
+  .footer-content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    row-gap: 22px;
+}
+.your-events-searchstyle-footer {
+  margin: auto;
+
+}
+.footer-container {
+  text-align: center;
+}
+}
+
+@media screen and (max-width:410px){
+  .footer-content {
+
+    grid-template-columns:100%;
+    row-gap: 0px;
+  
+}
+.footer-excl-ordrr{
+  order: 3;
+}
+.footer-excl-sportt{
+  order: 2;
+}
+}

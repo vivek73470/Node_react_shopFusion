@@ -1,0 +1,27 @@
+.profile-pht {
+  font-size: 28px;
+    cursor: pointer;
+}
+.prfl-pic{
+    position: relative;
+}
+.profile-menu-options {
+    padding: 15px;
+    position: absolute;
+    right: -30px;
+    top: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+ box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f;
+
+}
+.profile-menuflxx{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+a{
+    color: #000000 !important;
+    font-weight: 600;
+}

@@ -1,0 +1,534 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": "150",
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/men-s-blue-respawn-game-half-sleeve-t-shirt-544383-1664371504-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 10,
+      "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+      "price": 56.99,
+      "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-red-boyfriend-t-shirt-170465-1658918677-1.jpg",
+      "rating": {
+        "rate": 2.6,
+        "count": 235
+      }
+    },
+    {
+      "id": 2,
+      "title": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 49,
+      "actualPriceText": 600,
+      "discount_price_box": 551,
+      "image": "https://images.bewakoof.com/t640/men-s-blue-dope-bear-graphic-printed-oversized-t-shirt-547532-1667563188-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 3,
+      "title": "Mens black color Premium Slim Fit T-Shirts ",
+      "price": 55.99,
+      "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/the-ryuk-oversized-full-sleeve-t-shirt-554016-1667974663-1.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 500
+      }
+    },
+    {
+      "id": 4,
+      "title": "Mens Casual Slim Fit color black sticker",
+      "price": 15.99,
+      "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/bad-man-half-sleeve-t-shirt-515407-1656919080-1.jpg",
+      "rating": {
+        "rate": 2.1,
+        "count": 430
+      }
+    },
+    {
+      "id": 11,
+      "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker",
+      "price": 295,
+      "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-white-boyfriend-t-shirt-119167-1658407355-1.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 340
+      }
+    },
+    {
+      "id": 5,
+      "title": "Solid Gold Petite black white Micropave oneplus",
+      "price": 695,
+      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/lion-the-king-printed-premium-glass-cover-for-oppo-a76-impact-resistant-matte-finish-527273-1659100776-1.jpg",
+      "rating": {
+        "rate": 4.6,
+        "count": 400
+      }
+    },
+    {
+      "id": 8,
+      "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t540/hocopoco-pew-pew-glass-case-for-iphone-13-pro-max-448335-1636960633-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 9,
+      "title": "Solid Gold Petite Micropave samsung cover",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/green-owl-printed-designer-hard-cover-for-samsung-a22-5g-impact-resistant-matte-finish-548089-1665565752-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 12,
+      "title": "Rain Jacket Women Windbreaker Striped and Climbing Raincoats",
+      "price": 399,
+      "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-black-slim-fit-t-shirt-232388-1665664326-1.jpg",
+      "rating": {
+        "rate": 3.8,
+        "count": 679
+      }
+    },
+    {
+      "id": 13,
+      "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+      "price": 985,
+      "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-black-t-shirt-105769-1661352747-1.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 130
+      }
+    },
+    {
+      "id": 14,
+      "title": "Opna Women's Short Sleeve Moisture Boat Neck V",
+      "price": 795,
+      "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/white-round-neck-3-4th-sleeve-t-shirt-105767-1655748756-1.jpg",
+      "rating": {
+        "rate": 4.5,
+        "count": 146
+      }
+    },
+    {
+      "id": 15,
+      "title": "DANVOUY Womens T Shirt Casual Cotton Short yellow straight stick pummy",
+      "price": 129,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/busy-doin-nothing-boyfriend-t-shirt-dl-pineapple-yellow-277532-1655748308-1.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+    {
+      "id": 16,
+      "title": "Arrow Men's Slim Shirt  The Purrnisher Graphic Printed Oversized",
+      "price": 949,
+      "description": "Arrow's shirts are an undeniable choice when you want to look your best. This formal shirt features a point collar and full sleeve while the combination of fine tailoring and soft fabric gives you a smart & crisp look.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/men-s-black-inspire-graphic-printed-oversized-t-shirt-553301-1667891608-1.jpg",
+      "rating": {
+        "rate": 4,
+        "count": 176
+      }
+    },
+    {
+      "id": 17,
+      "title": "Jack & Jones Men's Carrot Slim Jeans  The Purrnisher Graphic Printed",
+      "price": 989,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/men-s-black-what-the-duck-graphic-printed-oversized-t-shirt-553306-1667891652-1.jpg",
+      "rating": {
+        "rate": 4,
+        "count": 29
+      }
+    },
+    {
+      "id": 18,
+      "title": "Men's Black The Purrnisher Graphic Printed Oversized T-shirt",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 49,
+      "actualPriceText": 600,
+      "discount_price_box": 551,
+      "image": "https://images.bewakoof.com/t640/men-s-black-the-purrnisher-graphic-printed-oversized-t-shirt-552898-1667807326-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 19,
+      "title": "Men's White What The Duck Graphic Printed Oversized T-shirt",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 49,
+      "actualPriceText": 600,
+      "discount_price_box": 551,
+      "image": "https://images.bewakoof.com/t640/men-s-white-what-the-duck-graphic-printed-oversized-t-shirt-553308-1667891931-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 20,
+      "title": "Men's Blue What The Duck Graphic Printed T-shirt",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 49,
+      "actualPriceText": 600,
+      "discount_price_box": 551,
+      "image": "https://images.bewakoof.com/t640/the-ryuk-half-sleeve-t-shirt-554010-1667975037-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 21,
+      "title": "Men's Blue What The Duck Graphic Printed T-shirt",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 49,
+      "actualPriceText": 600,
+      "discount_price_box": 551,
+      "image": "https://images.bewakoof.com/t640/men-s-blue-what-the-duck-graphic-printed-t-shirt-553303-1667891974-1.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
+      "id": 22,
+      "title": "Travel Map Printed Designer Hard Cover For Samsung A22 5G ()",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/travel-map-printed-designer-hard-cover-for-samsung-a22-5g-impact-resistant-matte-finish-548090-1665565669-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 23,
+      "title": "Worship Printed Premium Glass Cover For A22 5G()",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/worship-printed-premium-glass-cover-for-a22-5g-impact-resistant-matte-finish-533165-1659623537-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 24,
+      "title": "Wakanda King Designer Hard Cover for Xiaomi Poco X2",
+      "price": "10.91",
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t320/wakanda-king-designer-hard-cover-for-redmi-k20-pro-553386-1668136328-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 25,
+      "title": "DC Trio LED Cover for iPhone 12 Pro covers",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t320/hocopoco-multicolor-samsung-galaxy-a51-glass-mobile-cover-468610-1643097083-1.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 26,
+      "title": "DC Trio LED Cover for iPhone 12 Pro samsung cover",
+      "price": 10.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/dc-trio-led-cover-for-iphone-12-pro-517537-1658851125-2.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
+    },
+    {
+      "id": 27,
+      "title": "Hello Sunshine Boyfriend T-Shirt Navy Blue",
+      "price": 129,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/hello-sunshine-boyfriend-t-shirt-navy-blue-296647-1655748887-1.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+    {
+      "id": 28,
+      "title": "Women's Blue Hang Loose Relax Boyfriend T-shirt",
+      "price": 129,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-blue-hang-loose-relax-boyfriend-t-shirt-387816-1655748787-1.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+    {
+      "id": 29,
+      "title": "Women's Black Universe Graphic Printed Boyfriend T-shirt",
+      "price": 129,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": "595",
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/women-s-black-one-with-the-universe-graphic-printed-boyfriend-t-shirt-483055-1655748960-1.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+    {
+      "id": 6,
+      "title": "Solid Gold Petite Micropave pummy sticker ",
+      "price": 168,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/funny-pug-face-printed-premium-glass-cover-for-oneplus-9rt-impact-resistant-matte-finish-526356-1659101896-1.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 70
+      }
+    },
+    {
+      "id": 7,
+      "title": "White Gold Plated Princess Petite Micropave",
+      "price": 9.99,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "covers",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": 149,
+      "actualPriceText": 599,
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t1080/gambling-problem-printed-premium-glass-cover-for-oneplus-9rt-impact-resistant-matte-finish-526367-1659101416-1.jpg",
+      "rating": {
+        "rate": 3,
+        "count": 400
+      }
+    },
+    {
+      "id": 30,
+      "title": "Women's Cats coffee And Books Slim Fit T-shirt",
+      "price": 129,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "plp": "OVERSIZED FIT",
+      "brand_namez": "Burberry",
+      "discountedPriceText": "150",
+      "actualPriceText": "599",
+      "discount_price_box": 559,
+      "image": "https://images.bewakoof.com/t640/cats-coffee-and-books-half-sleeve-t-shirt-384431-1655748506-1.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    }
+  ],
+  "cart": [],
+  "orders": [],
+  "user": [
+    {
+      "username": "vivek",
+      "email": "vivek@gmail.com",
+      "password": "12345",
+      "id": 1,
+      "gender": "Male",
+      "number": "7347063116",
+      "address": "Chandigarh",
+      "DOB": "2024-05-14"
+    },
+    {
+      "username": "vivek",
+      "email": "vivek1@gmail.com",
+      "password": "2233",
+      "id": 2
+    }
+  ]
+}

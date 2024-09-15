@@ -1,0 +1,130 @@
+body {
+    overflow-x: hidden;
+  }
+  
+  .home-wrapper{
+    overflow: hidden;
+    margin: auto;
+}
+.home-1st-page{
+    padding-top: 90px;
+}
+.home-1st-page-inside{
+margin: auto;
+width:100%;
+}
+
+.home-1st-page-inside-image-slider img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+}
+.home-2nd-page-banner {
+    width: 100%;
+    margin: auto;
+margin-top: 25px;
+}
+.home-2nd-page-banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.home-3rd-page-wrap{
+    max-width: 96%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    height: 440px;
+    text-align: center;
+    padding-bottom: 45px;
+}
+.home-3rd-page-multi-images img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.home-4th-page-wrap{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.home-4th-page-multi{
+    width: 50%;
+    margin: auto;
+}
+.home-4th-page-multi img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+.best-seller-screen{
+    max-width: 98%;
+    margin: auto;
+    padding-bottom: 40px;
+}
+.best-heading{
+    text-align: center;
+    padding-bottom: 25px;
+}
+.seller-design-data{
+    display: flex;
+    column-gap: 15px;
+}
+.best-seller-imgeeq img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.best-seller-imgeeq {
+ width:100%;
+ height: auto;
+}
+
+
+
+@media screen and (max-width:1685px){
+    .home-3rd-page-wrap{
+        height: auto;
+    }
+}
+
+@media screen and (max-width:768px){
+    .best-seller-imgeeq {
+        /* width: auto;
+        height: 250px; */
+        width: 91%;
+        margin: auto;
+        height: auto;
+       }
+       .home-3rd-page-wrap{
+        display: grid;
+      grid-template-columns: 50% 50%;
+        justify-content: center;
+     
+    }
+    .seller-design-data {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        column-gap: 4px;
+    }
+
+}
+
+@media screen and (max-width:360px){
+       .home-3rd-page-wrap{
+        display: grid;
+      grid-template-columns: 100%;
+        justify-content: center;
+     
+    }
+    .seller-design-data {
+        display: grid;
+        grid-template-columns: 100%;
+        row-gap: 15px;
+        
+    }
+}

@@ -1,0 +1,83 @@
+.Admin-Header-screen-wrapper {
+    padding-left: 76px;
+    background: #F4f7fe;
+    display: flex;
+    height: 100px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.Admin-Header-title-welcome{
+  font-size: 30px;
+  color: #000000;
+  font-weight: 700;
+}
+.admin-header-offcanvas{
+  display: none;
+}
+.Admin-Header-title{
+display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+}
+.adminoffcanvas-body-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.admin-offcanvas-body-homecnt {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+}
+.admin-navbar-head-homcnt-hamb {
+  display: inline-block;
+  text-decoration: none !important;
+  color: black;
+  font-size: 23px;
+  font-weight: 500;
+  cursor: pointer !important;
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+.admin-offcanvas-body-linkk{
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+.admin-offcanvas-logout{
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  column-gap: 20px;
+  padding-right: 50px;
+  align-items: center;
+}
+.admin-closebtn-canvas{
+  font-size: 25px;
+}
+#admin-offcanvas-header-hambopen {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f;
+}
+
+@media screen and (max-width:940px){
+  .admin-header-offcanvas{
+    display: block;
+    font-size: 26px;
+  }
+  .Admin-Header-screen-wrapper {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width:550px){
+.admin-closebtn-canvas{
+  font-size: 20px;
+}
+}

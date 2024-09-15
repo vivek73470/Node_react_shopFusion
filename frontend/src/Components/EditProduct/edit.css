@@ -1,0 +1,89 @@
+/* adminaddprod.css */
+
+.container-addproduct {
+    max-width: 1430px;
+    margin: 0 auto;
+    margin-top: 25px;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      /* box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f; */
+      box-shadow: 7.1147541999816895px 7.1147541999816895px 35.57377243041992px 0px #0000000f;
+    }
+    
+    .addproduct-title {
+      font-size: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .addproduct-form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .addproduct-input {
+      width: 45%;
+      outline: none;
+      margin-bottom: 15px;
+      padding: 14px 10px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+    .addproduct-input-drp {
+      width: 46.8%;
+      outline: none;
+      margin-bottom: 15px;
+      padding: 14px 10px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+    
+    .addproduct-button {
+      background: #db4444;
+      border: 0;
+      color: #fff;
+      padding: 15px 28px;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: 0.5s;
+      font-weight: 600;
+      width: max-content;
+      padding: 9px 30px;
+      font-size: 16px;
+  
+  }
+  .addproduct-button:hover {
+      color: red;
+      background-color: #fff;
+      border: 1px solid red;
+    }
+  
+    
+    .add-admin-prd-rww{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 25px;
+    }
+
+    @media screen and (max-width:767px){
+      .add-admin-prd-rww{
+        display: grid;
+       grid-template-columns: 100%;
+        justify-content: center;
+        padding-bottom: 25px;
+        row-gap: 15px;
+      }
+      .addproduct-input-drp {
+        width: 100%;
+      }
+      .addproduct-input {
+        width: 100%;
+      }
+      .addproduct-button {
+        margin: auto;
+        width: 100%;
+      }
+    }
