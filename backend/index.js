@@ -3,6 +3,7 @@ const Connection = require('./config/db')
 const userRouter = require('./routes/userroute')
 const productsRoute = require('./routes/productsroute')
 const cors = require('cors');
+require('dotenv').config()
 const app = express();
 
 app.use(express.json())
@@ -15,12 +16,12 @@ app.use('/product',productsRoute)
 
 
 
-app.listen(4500, async () => {
+app.listen(process.env.port, async () => {
     try {
         await Connection
         console.log("connected to db")
     } catch (e) {
 console.log(e)
     }
-    console.log("server running on port 4500")
+    console.log(`server running on port ${process.env.port}`)
 })

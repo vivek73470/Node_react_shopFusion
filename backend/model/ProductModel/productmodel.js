@@ -6,7 +6,7 @@ const ProductSchema = new mongoose.Schema({
     description: { type: String, default: null }, 
     category: { type: String, required: true },
     plp: { type: String, default: null },
-    brand_name: { type: String, default: null }, 
+    brand_namez: { type: String, default: null }, 
     discountedPriceText: { type: String, default: null },
     actualPriceText: { type: Number, required: true },
     discount_price_box: { type: Number, default: null },

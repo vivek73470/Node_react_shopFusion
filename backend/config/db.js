@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const Connection = mongoose.connect('mongodb+srv://vivekyadav:vivek@cluster0.a6a8a.mongodb.net/TopshopDb');
+const Connection = mongoose.connect(process.env.mongoURL);
 
 module.exports = Connection
