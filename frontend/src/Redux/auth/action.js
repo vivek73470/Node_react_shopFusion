@@ -3,6 +3,7 @@
 import axios from "axios";
 import { auth, provider } from '../../firebase/firebase.config'
 import { signInWithPopup} from 'firebase/auth'
+import { json } from "react-router-dom";
 
 export const SIGNIN_GOOGLE_REQUEST = 'SIGNIN_GOOGLE_REQUEST';
 export const SIGNIN_GOOGLE_SUCCESS = 'SIGNIN_GOOGLE_SUCCESS';
@@ -89,14 +90,22 @@ const SignInFailure = () => {
     }
 }
 export const signIn = (formData) => async (dispatch) => {
+    console.log("login data",formData)
     try {
         dispatch(SignInRequest());
-        const res = await fetch(`${BASE_URL}/user`);
+        const res = await fetch(`${BASE_URL}/user/login`,{
+           method: 'POST',
+           body: JSON.stringify(formData),
+           headers: {
+            'Content-Type': 'application/json',
+        },
+
+        });
         const users = await res.json();
-        const userdata = users.find(u => u.email === formData.email && u.password === formData.password);
-        localStorage.setItem('userId', userdata.id);
+        console.log("login user",users)
+        localStorage.setItem('userId', users.token);
         dispatch(SignInSuccess({ status: true }))
-        fetchUserData(userdata.id)(dispatch);
+        // fetchUserData(userdata.id)(dispatch);
         return { status: true }
 
     }
