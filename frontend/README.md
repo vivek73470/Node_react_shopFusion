@@ -5,3 +5,4 @@
   redux-thunk
   axios
   json-server
+  firebase

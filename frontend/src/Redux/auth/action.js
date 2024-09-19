@@ -114,6 +114,7 @@ const SignUpRequest = () => {
     }
 }
 const SignUpSuccess = (payload) => {
+    console.log("payload",payload)
     return {
         type: SIGNUP_SUCCESS,
         payload,
@@ -128,25 +129,17 @@ const SignUpFailure = () => {
 export const signUp = (formData) => async (dispatch) => {
     try {
         dispatch(SignUpRequest());
-        const emailCheckResponse = await fetch(`${BASE_URL}/user?email=${formData.email}`);
-        const existingUser = await emailCheckResponse.json();
-
-        if (existingUser.length > 0) {
-            dispatch(SignUpFailure());
-            return { status: false }
-
-        } else {
-            const signUpResponse = await fetch(`${BASE_URL}/user`, {
+            const response = await fetch(`${BASE_URL}/user/register`, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            const user = await signUpResponse.json();
+            const user = await response.json();
             dispatch(SignUpSuccess(user));
             return { status: true }
-        }
+
     } catch (error) {
         console.error('Error during sign up:', error);
         dispatch(SignUpFailure());
