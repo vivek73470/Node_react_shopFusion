@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.css'
+import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { addProducts } from '../../Redux/products/action';
@@ -7,7 +8,7 @@ import { addProducts } from '../../Redux/products/action';
 function Addproduct() {
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     category: '',
     title: '',
     price: '',

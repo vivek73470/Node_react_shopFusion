@@ -5,14 +5,14 @@ import * as types from './actionType';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // loader 
-const startLoading =()=>{
-    return{
-        type:types.START_LOADING
+const startLoading = () => {
+    return {
+        type: types.START_LOADING
     }
 }
-const stopLoading =()=>{
-    return{
-        type:types.STOP_LOADING
+const stopLoading = () => {
+    return {
+        type: types.STOP_LOADING
     }
 }
 
@@ -36,13 +36,16 @@ const fetchDataFailure = () => {
 
     }
 }
-const fetchData = (params) => (dispatch) => {
+const fetchData = () => async (dispatch) => {
     dispatch(fetchDataRequest());
-    axios.get(`${BASE_URL}/products`, params)
-        .then((r) => dispatch(fetchDataSuccess(r.data)))
-        // This response(r) object contains various properties including the data property, which holds the response data returned from the server.
-        .catch((e) => dispatch(fetchDataFailure(e.data)))
+    try {
+        const response = await axios.get(`${BASE_URL}/products`);
+        dispatch(fetchDataSuccess(response.data.data));
+    } catch (error) {
+        dispatch(fetchDataFailure(error.message || 'Something went wrong'));
+    }
 };
+
 
 
 // single page products 
@@ -64,11 +67,14 @@ const getSingleProductFailure = () => {
 
     }
 }
-const getSingleProduct = (id) => (dispatch) => {
+const getSingleProduct = (id) => async (dispatch) => {
     dispatch(getSingleProductRequest())
-    axios.get(`${BASE_URL}/products/${id}`)
-        .then(r => dispatch(getSingleProductSuccess(r.data)))
-        .catch(e => dispatch(getSingleProductFailure(e.data)))
+    try {
+        const response = await axios.get(`${BASE_URL}/products/${id}`)
+        dispatch(getSingleProductSuccess(response.data.data))
+    } catch (e) {
+        dispatch(getSingleProductFailure(e.message))
+    }
 }
 
 
@@ -201,7 +207,7 @@ const emptyCartSuccess = () => {
 }
 const emptyCart = (payload) => async (dispatch) => {
     dispatch(emptyCartRequest());
-    const{id}=payload;
+    const { id } = payload;
     dispatch(deleteProductCart(id))
     dispatch(emptyCartSuccess)
 
@@ -259,13 +265,13 @@ const deleteOrderFailure = () => {
 const deleteOrderProducts = (id) => (dispatch) => {
     dispatch(deleteOrderRequest())
     axios.delete(`${BASE_URL}/orders/${id}`)
-    .then((res)=>{
-        dispatch(deleteOrderSuccess(res.data))
-          dispatch(fetchOrder());
-})
-  
-    .catch(err =>dispatch(deleteOrderFailure(err.data)))
-   
+        .then((res) => {
+            dispatch(deleteOrderSuccess(res.data))
+            dispatch(fetchOrder());
+        })
+
+        .catch(err => dispatch(deleteOrderFailure(err.data)))
+
 }
 
 
@@ -288,7 +294,7 @@ const AddProductsFailure = () => {
 }
 const addProducts = (data) => (dispatch) => {
     dispatch(AddProductsRequest());
-    axios.post(`${BASE_URL}/products`, data)
+    axios.post(`${BASE_URL}/products/add`, data)
         .then(r => dispatch(AddProductsSuccess(r.data)))
         .catch(e => dispatch(AddProductsFailure(e.data)))
 
@@ -302,6 +308,7 @@ const EditProductsRequest = () => {
     }
 }
 const EditProductsSuccess = (payload) => {
+    console.log(payload)
     return {
         type: types.EDIT_PRODUCT_SUCCESS,
         payload,
@@ -312,12 +319,15 @@ const EditProductsFailure = () => {
         type: types.EDIT_PRODUCT_FAILURE
     }
 }
-const editProducts = (id, data) => (dispatch) => {
+const editProducts = (id, data) => async (dispatch) => {
     dispatch(EditProductsRequest());
-    axios.put(`${BASE_URL}/products/${id}`, data)
-        .then(r => dispatch(EditProductsSuccess(r.data)))
-        .catch(e => dispatch(EditProductsFailure(e.data)))
-
+    try {
+        const res = await axios.put(`${BASE_URL}/products/${id}`, data)
+        console.log("edit",res.data)
+        dispatch(EditProductsSuccess(res.data.data))
+    } catch (e) {
+        dispatch(EditProductsFailure(e.message))
+    }
 }
 
 
@@ -350,5 +360,7 @@ const deleteProducts = (id) => (dispatch) => {
 }
 
 
-export { fetchData,deleteOrderProducts, editProducts, deleteProducts, emptyCart, fetchOrder, getSingleProduct,
-     addProductCart, fetchCart, deleteProductCart, addOrder, addProducts,startLoading,stopLoading };
+export {
+    fetchData, deleteOrderProducts, editProducts, deleteProducts, emptyCart, fetchOrder, getSingleProduct,
+    addProductCart, fetchCart, deleteProductCart, addOrder, addProducts, startLoading, stopLoading
+};

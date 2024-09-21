@@ -12,7 +12,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
-
+    console.log('reducer',payload)
     switch (type) {
         case types.START_LOADING:
             return {
@@ -78,7 +78,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: '',
-                CurrentProduct: payload,
+                products: payload,
                 loading: false
             }
 

@@ -46,7 +46,7 @@ function Sidebar({ Children }) {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
     navigate('/login')
     toast("Logout Successfully!");
   }

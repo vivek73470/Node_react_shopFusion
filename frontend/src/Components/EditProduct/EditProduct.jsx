@@ -27,7 +27,6 @@ function EditProduct() {
     useEffect(() => {
         if (id) {
             dispatch(getSingleProduct(id))
-
         }
     }, [dispatch, id]);
 

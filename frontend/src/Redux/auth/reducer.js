@@ -12,7 +12,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
-    console.log('change pass reducer',payload)
     switch (type) {
         case SIGNIN_GOOGLE_REQUEST:
             return{

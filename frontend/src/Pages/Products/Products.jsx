@@ -14,15 +14,15 @@ const Products = () => {
   const dispatch = useDispatch()
   const watches = useSelector((store) => store.ProductReducer.products)
 
-  const [searchParams] = useSearchParams()
+  // const [searchParams] = useSearchParams()
 
   useEffect(() => {
-    let getParams = {
-      params: { category: searchParams.getAll("category") }
-    }
-    dispatch(fetchData(getParams))
+    // let getParams = {
+    //   params: { category: searchParams.getAll("category") }
+    // }
+    dispatch(fetchData())
 
-  }, [searchParams, dispatch])
+  }, [dispatch])
 
 
   return (
@@ -46,7 +46,7 @@ const Products = () => {
                       <p className='product-actual-price'>₹{item.actualPriceText}</p>
                     </div>
                     <p className='product-title-members'>₹{item.discount_price_box} For Tribe Members</p>
-                    <button className="product-viewdtls-dgn" onClick={() => navigate(`/cartproducts/${item.id}`)}>View details</button>
+                    <button className="product-viewdtls-dgn" onClick={() => navigate(`/cartproducts/${item._id}`)}>View details</button>
                   </div>
                 ))}
             </div>

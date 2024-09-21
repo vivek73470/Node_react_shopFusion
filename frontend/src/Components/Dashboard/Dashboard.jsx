@@ -42,8 +42,8 @@ function Dashboard() {
                       <i class="material-icons">more_vert</i>
                     </button>
                     <ul id='action-dropdown' class="dropdown-menu">
-                      <li onClick={() => navigate(`/admin/edit-product/${item.id}`)}> <TiEdit /> Edit</li>
-                      <li onClick={() => deleteProduct(item.id)}> <RiDeleteBin6Line /> Delete</li>
+                      <li onClick={() => navigate(`/admin/edit-product/${item._id}`)}> <TiEdit /> Edit</li>
+                      <li onClick={() => deleteProduct(item._id)}> <RiDeleteBin6Line /> Delete</li>
                     </ul>
                   </div>
                   <img className='product-imgstyle-dash' src={item.image} alt="cloth products" />
@@ -56,7 +56,7 @@ function Dashboard() {
                   </div>
                   <p className='product-title-members-dash'>₹{item.discount_price_box} For Tribe Members</p>
                   {/* <button onClick={() => navigate(`/cartproducts/${item.id}`,'_blank')} className='dash-ad-viewdtls'>View details</button> */}
-                  <button onClick={() => window.open(`/cartproducts/${item.id}`, '_blank')} className='dash-ad-viewdtls'>View details</button>
+                  <button onClick={() => window.open(`/cartproducts/${item._id}`, '_blank')} className='dash-ad-viewdtls'>View details</button>
 
                 </div>
               ))

@@ -90,7 +90,6 @@ const SignInFailure = () => {
     }
 }
 export const signIn = (formData) => async (dispatch) => {
-    console.log("login data",formData)
     try {
         dispatch(SignInRequest());
         const res = await fetch(`${BASE_URL}/user/login`,{
