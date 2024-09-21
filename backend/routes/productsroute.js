@@ -8,8 +8,8 @@ try{
  const data = await AllProduct.find();
  return res.status(200).send({
     status: true, 
-    data: data, 
-    message: "Got all products successfully"
+    message: "Got all products successfully",
+    data: data
 });
 }catch(e){
     console.log(e)
@@ -21,38 +21,15 @@ try{
 })
 
 productsRoute.post('/add',async(req,res)=>{
-    const {
-        title,
-        price,
-        description,
-        category,
-        plp,
-        brand_namez,
-        discountedPriceText,
-        actualPriceText,
-        discount_price_box,
-        image,
-        rating
-    } = req.body;
+    const { title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText,
+        discount_price_box, image,rating} = req.body;
     try{
-     const dataAdd = new AllProduct({
-        title,
-        price,
-        description,
-        category,
-        plp,
-        brand_namez,
-        discountedPriceText,
-        actualPriceText,
-        discount_price_box,
-        image,
-        rating
-     });
+     const dataAdd = new AllProduct({ title, price, description, category, plp,brand_namez,discountedPriceText, actualPriceText, discount_price_box,  image,rating });
      await dataAdd.save()
      return res.status(200).send({
         status: true, 
-        data: data, 
-        message: "Add products successfully"
+        message: "Add products successfully",
+        data: dataAdd
     });
     }catch(e){
         console.log(e)
@@ -62,5 +39,6 @@ productsRoute.post('/add',async(req,res)=>{
         });
     }
     })
+
 
 module.exports = productsRoute;

@@ -15,7 +15,8 @@ const ProductSchema = new mongoose.Schema({
         rate: { type: Number, default: null },
         count: { type: Number, default: null },
     },
-})
+
+},{versionKey:false})
 
 const AllProduct = mongoose.model("products",ProductSchema)
 

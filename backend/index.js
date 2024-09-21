@@ -12,8 +12,7 @@ app.use(cors({
 }))
 
 app.use('/user',userRouter)
-app.use('/product',productsRoute)
-
+app.use('/products',productsRoute)
 
 
 app.listen(process.env.port, async () => {

@@ -8,7 +8,10 @@ const userModel = new mongoose.Schema({
     number:{type:String,},
     address:{type:String,},
     DOB:{type:String,},
-})
+},
+{versionKey:false}
+)
+
 // User :  JavaScript variable name that you use to interact with your Mongoose model 
 // user : This is the name of the MongoDB collection where your documents are stored.
 const User = mongoose.model("user",userModel)
