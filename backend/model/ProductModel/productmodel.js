@@ -10,11 +10,7 @@ const ProductSchema = new mongoose.Schema({
     discountedPriceText: { type: String, default: null },
     actualPriceText: { type: Number, required: true },
     discount_price_box: { type: Number, default: null },
-    image: { type: String, required: true },
-    rating: {
-        rate: { type: Number, default: null },
-        count: { type: Number, default: null },
-    },
+    image: { type: String, required: true }
 
 },{versionKey:false})
 
