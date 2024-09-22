@@ -6,3 +6,4 @@ install
 5. jsonwebtoken
 6. bcrypt
 7. cors
+8. nodemailer

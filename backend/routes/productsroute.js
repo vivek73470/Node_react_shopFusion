@@ -68,6 +68,7 @@ productsRoute.put('/:id', async (req, res) => {
     try {
        const data =  await AllProduct.findByIdAndUpdate({ _id: id }, payload);
         return res.status(200).send({ 
+            status:true,
             message: "update product successfully",
             data: data
          });
@@ -83,7 +84,9 @@ productsRoute.delete('/:id',async(req,res)=>{
     const id = req.params.id;
     try{
      await AllProduct.findByIdAndDelete({_id: id});
-     return res.status(200).send({message: "deleted product"});
+     return res.status(200).send({
+        status:true,
+        message: "deleted product"});
     }catch(e){
         console.log(e)
         return res.status(500).send({message: "error while deleting"});

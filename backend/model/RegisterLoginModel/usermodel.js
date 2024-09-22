@@ -4,10 +4,10 @@ const userModel = new mongoose.Schema({
     username:{type:String, required:true},
     email:{type:String, required:true,unique: true,},
     password:{type:String, required:true},
-    gender:{type:String,},
-    number:{type:String,},
-    address:{type:String,},
-    DOB:{type:String,},
+    gender:{type:String,default:null},
+    number:{type:String,default:null},
+    address:{type:String,default:null},
+    DOB:{type:String,default:null},
 },
 {versionKey:false}
 )
