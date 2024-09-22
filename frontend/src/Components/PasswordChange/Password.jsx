@@ -10,6 +10,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom'
 import { FaEyeSlash } from "react-icons/fa6";
 import { LuEye } from "react-icons/lu";
+import { toast } from 'react-toastify';
 
 
 function Password() {
@@ -29,15 +30,20 @@ function Password() {
 
         })
     }
-
-    const handlePassword = (e) => {
+    const handlePassword = async (e) => {
         e.preventDefault();
-        const { id } = passId;
+        const {_id } = passId;
         passId.password = passData.password
-        dispatch(Changepassword(id, passId))
-        navigate('/login')
-
-    }
+        console.log("rfnt",passId)
+        const response = await dispatch(Changepassword(_id,passId));
+        if (response.status) {
+            navigate('/login');
+            toast.success("Password changed successfully!");
+        } else {
+            toast.error(response.message || "Failed to change password.");
+        }
+    };
+    
 
     const eyeToggle =()=>{
         setShowPassword(!showPassword)

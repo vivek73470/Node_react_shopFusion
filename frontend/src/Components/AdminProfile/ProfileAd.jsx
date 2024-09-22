@@ -2,21 +2,24 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProf, fetchUserData } from '../../Redux/auth/action';
+import { json } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function ProfileAd() {
   const dispatch = useDispatch();
-  const profileData = useSelector((store)=>store.AuthReducer.userData)
-const[message,setMessage]= useState('')
+  const profileData = useSelector((store) => store.AuthReducer.userData)
   const [data, setData] = useState({
     username: '',
-    email: '',
     gender: '',
     number: '',
     address: '',
     DOB: "",
 
   })
-  const userId = localStorage.getItem('userId');
+  const userData = localStorage.getItem('userId');
+  const user_id = JSON.parse(userData)
+  const userId = user_id?._id;
+
 
   useEffect(() => {
     if (userId) {
@@ -26,9 +29,9 @@ const[message,setMessage]= useState('')
 
   useEffect(() => {
     if (profileData) {
-        setData(profileData);
+      setData(profileData);
     }
-}, [ setData,profileData]);
+  }, [setData, profileData]);
 
   const handleChange = (e) => {
     setData({
@@ -40,90 +43,87 @@ const[message,setMessage]= useState('')
 
   // const handleProfileChange = (e) => {
   //   const file = e.target.files[0];
-  
+
   //   if (file) {
   //     const reader = new FileReader();
-  
+
   //     reader.onloadend = () => {
   //       setData({
   //         ...data,
   //         [e.target.name]: reader.result
   //       });
   //     };
-  
+
   //     reader.readAsDataURL(file);
   //   }
   // };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(UpdateProf(userId, data));
-    setMessage('Profile updated successfully!');
-    setTimeout(() => {
-      setMessage('')
-    }, 3000); 
+    try {
+      const res = await dispatch(UpdateProf(userId, data));
+      if (res.status) {
+        toast.success("Profile updated successfully!");
+      } else {
+        toast.error(res.message || "Failed to update profile.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
   };
+
 
   return (
     <>
-    <h2 className='profile-persnl'>Personal Info..</h2>
-       <form className='Profile-Form' onSubmit={handleSubmit}>
-         <div className='profile-left-frm'>
-           <div className='inside-prfle-lftfrm'>
-           <input
-             name='username'
-             type='text'
-             placeholder='full name'
-             value={data.username}
-             onChange={handleChange}
-           />
-           <br />
-           <input
-             name='email'
-             type='email'
-             placeholder='email'
-             value={data.email}
-             onChange={handleChange}
-           />
-           <br />
-           <input
-             name='DOB'
-             type='date'
-             placeholder='DOB'
-             value={data.DOB}
-             onChange={handleChange}
-           />
-           <br />
-           <input
-             name='gender'
-             type='text'
-             placeholder='Gender'
-             value={data.gender}
-             onChange={handleChange}
-           />
-           <br />
-           <input
-             name='number'
-             type='tel'
-             placeholder='Phone Number'
-             value={data.number}
-             onChange={handleChange}
-           />
-           <br />
-           <input
-             name='address'
-             type='text'
-             placeholder='Address'
-             value={data.address}
-             onChange={handleChange}
-           />
-           <br />
-           <button type='submit'>Update</button>
-           {message && <p className='admin-prfl-updatesucces'>{message}</p>}
-           </div>
- 
-           {/* <div className='profilr-pic'>
+      <h2 className='profile-persnl'>Personal Info..</h2>
+      <form className='Profile-Form' onSubmit={handleSubmit}>
+        <div className='profile-left-frm'>
+          <div className='inside-prfle-lftfrm'>
+            <input
+              name='username'
+              type='text'
+              placeholder='User Name'
+              value={data.username}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              name='gender'
+              type='text'
+              placeholder='Gender'
+              value={data.gender}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              name='number'
+              type='tel'
+              placeholder='Phone Number'
+              value={data.number}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              name='DOB'
+              type='date'
+              placeholder='DOB'
+              value={data.DOB}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              name='address'
+              type='text'
+              placeholder='Address'
+              value={data.address}
+              onChange={handleChange}
+            />
+            <br />
+            <button type='submit'>Update</button>
+          </div>
+
+          {/* <div className='profilr-pic'>
            <input
              name='profilephoto'
              type="file"
@@ -137,12 +137,12 @@ const[message,setMessage]= useState('')
              />
            )}
          </div> */}
-        
-         </div>
- 
- 
-       </form>
-     </>
+
+        </div>
+
+
+      </form>
+    </>
   )
 }
 

@@ -6,6 +6,7 @@ import { deleteProducts, fetchData } from '../../Redux/products/action'
 import { useNavigate } from 'react-router-dom'
 import { TiEdit } from "react-icons/ti";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from 'react-toastify';
 
 
 function Dashboard() {
@@ -14,9 +15,19 @@ function Dashboard() {
   const watches = useSelector((store) => store.ProductReducer.products)
 
 
-  const deleteProduct = (id) => {
-    dispatch(deleteProducts(id))
-  };
+  const deleteProduct = async (id) => {
+    if (id) {
+        const result = await dispatch(deleteProducts(id));
+        if (result.status) {
+            toast("Deleted Successfully!"); 
+        } else {
+            toast("Error while deleting!"); 
+        }
+    } else {
+        toast("Invalid product ID!"); 
+    }
+};
+
 
 
   useEffect(() => {

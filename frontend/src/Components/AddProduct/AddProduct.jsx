@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { addProducts } from '../../Redux/products/action';
+import { toast } from 'react-toastify';
 
 function Addproduct() {
   const navigate = useNavigate()
@@ -31,11 +32,17 @@ function Addproduct() {
 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addProducts(data))
-    navigate('/admin')
-  }
+    const result = await dispatch(addProducts(data));
+    if (result.status) {
+      navigate('/admin'); 
+        toast("Product added successfully!");
+    } else {
+        toast("Error while adding product!");
+    }
+};
+
 
   return (
     <>

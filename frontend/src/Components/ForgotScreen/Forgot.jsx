@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../../Components/Footer/footer'
 import Navbar from '../../Components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 
@@ -31,8 +32,8 @@ function Forgot() {
         if (response.status) {
             navigate('/new-password')
         }
-        else {
-            alert('user not found')
+        else{
+            toast.error("Email not found.");
         }
 
     }
@@ -48,20 +49,20 @@ function Forgot() {
                 </div>
                 <div className='rigester-medmax-width'>
                     <p className='register-acntcrt'>Forgot password</p>
-                    <p className='register-acntcrt-entr' style={{paddingBottom:'16px'}}>Enter your email to reset your password </p>
+                    <p className='register-acntcrt-entr' style={{ paddingBottom: '16px' }}>Enter your email to reset your password </p>
 
                     <form onSubmit={handleEmailSubmit}>
                         <div className='padding-cont-required'>
-                        <div className='hide-show-funct'>
-                            <input
-                                name='email'
-                                type="email"
-                                id='text-pas'
-                                value={emailData.email}
-                                onChange={handleEmail}
-                                required
-                            />
-                        </div>
+                            <div className='hide-show-funct'>
+                                <input
+                                    name='email'
+                                    type="email"
+                                    id='text-pas'
+                                    value={emailData.email}
+                                    onChange={handleEmail}
+                                    required
+                                />
+                            </div>
                         </div>
                         <button className='register-btn' type="submit">Submit</button>
                     </form>

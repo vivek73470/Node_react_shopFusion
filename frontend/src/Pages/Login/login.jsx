@@ -58,12 +58,15 @@ function Login() {
         e.preventDefault();
         if (validateForm()) {
             const response = await dispatch(signIn(formData));
+            console.log("frn",response)
             if (response.status) {
+                const { _id, token } = response;
+                localStorage.setItem('userId', JSON.stringify({_id, token }));
                 setFormData({ email: '', password: '' });
                 navigate('/admin');
-                toast("Login Successfully!");
+                toast.success("Login Successfully!");
             } else {
-                alert("Wrong password or email");
+                toast.error(response.message || "Wrong password or email");
             }
         }
     };

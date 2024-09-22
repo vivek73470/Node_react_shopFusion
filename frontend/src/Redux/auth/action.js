@@ -2,7 +2,7 @@
 // import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 import { auth, provider } from '../../firebase/firebase.config'
-import { signInWithPopup} from 'firebase/auth'
+import { signInWithPopup } from 'firebase/auth'
 import { json } from "react-router-dom";
 
 export const SIGNIN_GOOGLE_REQUEST = 'SIGNIN_GOOGLE_REQUEST';
@@ -37,14 +37,14 @@ export const CHANGGE_PASS_FAILURE = 'CHANGGE_PASS_FAILURE';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 
-
+// google signIn
 const SignInGoogleRequest = () => {
     return {
         type: SIGNIN_REQUEST
     }
 }
 const SignInGoogleSuccess = (payload) => {
-    console.log('googl payload',payload)
+    console.log('googl payload', payload)
     return {
         type: SIGNIN_SUCCESS,
         payload
@@ -59,20 +59,20 @@ export const signInGoogle = () => async (dispatch) => {
     try {
         dispatch(SignInGoogleRequest());
         const { user } = await signInWithPopup(auth, provider);
-        console.log('google',user.displayName)
+        console.log('google', user.displayName)
         localStorage.setItem('userId', user.email);
         dispatch(SignInGoogleSuccess(user.displayName))
-        return {status: true}
+        return { status: true }
     }
     catch (error) {
         dispatch(SignInGoogleFailure())
-        return {status:false}
+        return { status: false }
     }
 
 }
 
 
-
+// signIn
 const SignInRequest = () => {
     return {
         type: SIGNIN_REQUEST
@@ -92,37 +92,36 @@ const SignInFailure = () => {
 export const signIn = (formData) => async (dispatch) => {
     try {
         dispatch(SignInRequest());
-        const res = await fetch(`${BASE_URL}/user/login`,{
-           method: 'POST',
-           body: JSON.stringify(formData),
-           headers: {
-            'Content-Type': 'application/json',
-        },
-
+        const res = await fetch(`${BASE_URL}/user/login`, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
         const users = await res.json();
-        console.log("login user",users)
-        localStorage.setItem('userId', users.token);
-        dispatch(SignInSuccess({ status: true }))
-        // fetchUserData(userdata.id)(dispatch);
-        return { status: true }
-
+        if (res.status === 200) {
+            dispatch(SignInSuccess({ status: true }));
+            return { status: true,token:users.token,_id:users.user._id };
+        } else {
+            return { status: false, message: users.message };
+        }
     }
     catch (error) {
-        dispatch(SignInFailure())
-        return { status: false }
+        dispatch(SignInFailure());
+        return { status: false, message: 'An unexpected error occurred' };
     }
 };
 
 
-
+// signup
 const SignUpRequest = () => {
     return {
         type: SIGNUP_REQUEST
     }
 }
 const SignUpSuccess = (payload) => {
-    console.log("payload",payload)
+    console.log("payload", payload)
     return {
         type: SIGNUP_SUCCESS,
         payload,
@@ -137,20 +136,27 @@ const SignUpFailure = () => {
 export const signUp = (formData) => async (dispatch) => {
     try {
         dispatch(SignUpRequest());
-            const response = await fetch(`${BASE_URL}/user/register`, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const user = await response.json();
+        const response = await fetch(`${BASE_URL}/user/register`, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const user = await response.json();
+        if (response.status === 201) {
             dispatch(SignUpSuccess(user));
             return { status: true }
+        } else if (response.status === 409) {
+            return { status: false, code: 409, message: 'Email already registered' };
+        } else {
+            return { status: false, code: response.status, message: 'Registration failed' };
+        }
 
     } catch (error) {
         console.error('Error during sign up:', error);
         dispatch(SignUpFailure());
+        return { status: false, code: 500, message: 'An unexpected error occurred' };
     }
 };
 
@@ -178,11 +184,14 @@ const SetInFailure = (payload) => {
     }
 
 }
-export const fetchUserData = (userId) => (dispatch) => {
+export const fetchUserData = (userId) => async(dispatch) => {
     dispatch(SetInRequest());
-    axios.get(`${BASE_URL}/user/${userId}`)
-        .then((response) => dispatch(SetInSuccess(response.data)))
-        .catch((err) => dispatch(SetInFailure(err)))
+    try {
+        const response = await axios.get(`${BASE_URL}/user/${userId}`);
+        dispatch(SetInSuccess(response.data.data));
+    } catch (err) {
+        dispatch(SetInFailure(err));
+    }
 };
 
 
@@ -204,13 +213,20 @@ const UpdateFailure = () => {
         type: UPDATE_FAILURE
     }
 }
-export const UpdateProf = (id, data) => (dispatch) => {
+export const UpdateProf = (id, data) => async(dispatch) => {
     dispatch(UpdateRequest());
-    axios.put(`${BASE_URL}/user/${id}`, data)
-        .then((res) => dispatch(UpdateSuccess(res.data)))
-        .catch((err) => dispatch(UpdateFailure(err.data)))
-
-
+    try {
+        const res = await axios.put(`${BASE_URL}/user/${id}`, data);
+        if(res.status === 200){
+            dispatch(UpdateSuccess(res.data.data));
+            return{status:true}
+        }if(res.status === 404){
+            return{staus:false,code:404,message:res.data.message}
+        }
+    } catch (err) {
+        dispatch(UpdateFailure(err.response ? err.response.data : err.message));
+        return{status:false,message:err.message}
+    }
 }
 
 
@@ -234,20 +250,18 @@ const updateFailureEmail = () => {
 export const RequestchangePassword = (emailData) => async (dispatch) => {
     dispatch(updateRequestEmail());
     try {
-        const response = await axios.get(`${BASE_URL}/user`);
-        const details = response.data;
-        let userData = details.find(user => user.email === emailData.email);
-        if (userData) {
-            dispatch(updateSuccessEmail(userData));
-            return { status: true };
-        } else {
-            dispatch(updateFailureEmail('user not found'));
-            return { status: false };
+        const response = await axios.post(`${BASE_URL}/user/forgot-password`,emailData);
+
+        if(response.status === 200){
+            dispatch(updateSuccessEmail(response.data.data))
+            return{status:true,message:response.message}
+        }
+        if(response.status === 404){
+            return{status:false,message:response.message}
         }
     } catch (error) {
-        console.error('Error:', error);
         dispatch(updateFailureEmail('error fetching user details'));
-        return { status: false };
+        return { status: false, message: error.message || "An error occurred" };
     }
 };
 
@@ -270,13 +284,18 @@ const changeFailurePassword = () => {
         type: CHANGGE_PASS_FAILURE
     }
 }
-export const Changepassword = (id, data) => (dispatch) => {
+export const Changepassword = (id,passwordData) => async(dispatch) => {
+    console.log("id and pas",id,passwordData)
     dispatch(changeRequestPassword());
-    axios.put(`${BASE_URL}/user/${id}`, data)
-        .then((res) => {
-            dispatch(changeSuccessPassword(res.data))
-        })
-        .catch((err) => dispatch(changeFailurePassword(err.data)))
-
-
+    try {
+        const response = await axios.put(`${BASE_URL}/user/reset-password/${id}`, passwordData); 
+        if (response.status === 200) {
+            dispatch(changeSuccessPassword());
+            return { status: true, message: response.data.message }; 
+        }
+    } catch (error) {
+        console.error('Error changing password:', error);
+        dispatch(changeFailurePassword('Failed to change password.'));
+        return { status: false, message: error.response ? error.response.data.message : error.message };
+    }
 }

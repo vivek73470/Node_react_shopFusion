@@ -292,12 +292,17 @@ const AddProductsFailure = () => {
         type: types.ADD_PRODUCT_FAILURE
     }
 }
-const addProducts = (data) => (dispatch) => {
+const addProducts = (data) => async(dispatch) => {
     dispatch(AddProductsRequest());
-    axios.post(`${BASE_URL}/products/add`, data)
-        .then(r => dispatch(AddProductsSuccess(r.data)))
-        .catch(e => dispatch(AddProductsFailure(e.data)))
-
+    try {
+        const res = await axios.post(`${BASE_URL}/products/add`, data)
+        dispatch(AddProductsSuccess(res.data))
+        dispatch(fetchData())
+        return { status:true}
+    } catch (e) {
+        dispatch(AddProductsFailure(e.message))
+        return{status:false}
+    }
 }
 
 
@@ -308,7 +313,6 @@ const EditProductsRequest = () => {
     }
 }
 const EditProductsSuccess = (payload) => {
-    console.log(payload)
     return {
         type: types.EDIT_PRODUCT_SUCCESS,
         payload,
@@ -325,8 +329,11 @@ const editProducts = (id, data) => async (dispatch) => {
         const res = await axios.put(`${BASE_URL}/products/${id}`, data)
         console.log("edit",res.data)
         dispatch(EditProductsSuccess(res.data.data))
+        dispatch(fetchData())
+        return { status:true}
     } catch (e) {
         dispatch(EditProductsFailure(e.message))
+        return{status:false}
     }
 }
 
@@ -348,15 +355,17 @@ const DeleteProductsFailure = () => {
         type: types.DELETE_PRODUCT_FAILURE
     }
 }
-const deleteProducts = (id) => (dispatch) => {
+const deleteProducts = (id) => async(dispatch) => {
     dispatch(DeleteProductsRequest())
-    axios.delete(`${BASE_URL}/products/${id}`)
-        .then((r) => {
-            dispatch(DeleteProductsSuccess(r.data))
-            dispatch(fetchData());
-        })
-        .then(() => dispatch(fetchCart()))
-        .catch((e) => dispatch(DeleteProductsFailure(e.data)))
+    try {
+        const res = await axios.delete(`${BASE_URL}/products/${id}`)
+        dispatch(DeleteProductsSuccess(res.data))
+        dispatch(fetchData())
+        return { status:true}
+    } catch (e) {
+        dispatch(DeleteProductsFailure(e.message))
+        return{status:false}
+    }
 }
 
 

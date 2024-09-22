@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { editProducts, getSingleProduct } from '../../Redux/products/action';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function EditProduct() {
     const navigate = useNavigate()
     const { id } = useParams();
-  
+
     const dispatch = useDispatch();
     const editproduct = useSelector((store) => store.ProductReducer.CurrentProduct)
 
@@ -44,13 +45,21 @@ function EditProduct() {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        dispatch(editProducts(id, data))
-        navigate('/admin')
+        try {
+            const response = await dispatch(editProducts(id, data))
+            if (response.status) {
+                navigate('/admin')
+                toast("updated Successfully!");
+            }
+            else {
+                toast("updation failed!");
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
-
-
 
     return (
         <>
