@@ -33,7 +33,7 @@ function Checkout({ cart, checkoutHandler }) {
                         <h2 className='confirm-prch-ctr'>Confirm Purchase</h2>
                         <div className='checkout-inside-design'>
                         {cart.map((product) =>
-                            <div className='checkout-max-ovr' key={product.id}>
+                            <div className='checkout-max-ovr' key={product._id}>
                                 <div className='checkout-imagels'>  <img src={product.image} alt="" /></div>
                                 <p>{product.title}</p>
                             </div>

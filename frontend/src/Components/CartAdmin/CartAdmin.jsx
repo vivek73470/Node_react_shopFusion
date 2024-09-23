@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from 'react-redux'
 import { deleteProductCart, fetchCart } from '../../Redux/products/action';
+import { toast } from 'react-toastify';
+
 
 
 function CartAdmin() {
@@ -11,8 +13,13 @@ function CartAdmin() {
     const cart = useSelector((store) => store.ProductReducer.cart)
 
 
-    const removeProduct = (id) => {
-        dispatch(deleteProductCart(id))
+    const removeProduct = async(id) => {
+        const result = await dispatch(deleteProductCart(id))
+        if(result.success) { 
+            toast.success(result.message || 'Removed successfully');
+         } else {
+            toast.error(result.message || 'Error while removing product');
+         }
       };
 
     useEffect(() => {
@@ -34,7 +41,7 @@ function CartAdmin() {
                             <h4>{item.title}</h4>
                             <p className='orderadmin-description'>{item.description}</p>
                             <p className='cartadmin-add-price-order'>रु.{item.price}</p>
-                            <button onClick={() => removeProduct(item.id)} className='rmv-btn-admin'>
+                            <button onClick={() => removeProduct(item._id)} className='rmv-btn-admin'>
                 <MdDelete />   Remove  </button>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrderProducts, fetchOrder } from '../../Redux/products/action';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/footer';
+import { toast } from 'react-toastify';
 
 function Order() {
     const dispatch = useDispatch();
@@ -14,8 +15,14 @@ function Order() {
         dispatch(fetchOrder());
     }, [dispatch]);
 
-    const removeOrder = (id) => {
-        dispatch(deleteOrderProducts(id))
+    const removeOrder = async(id) => {
+       const result = await dispatch(deleteOrderProducts(id))
+       if(result.status){
+        toast.success(result.message || 'order cancel successfully');
+
+       }else{
+        toast.error(result.message || 'Error while cancel order');
+       }
     }
 
     return (
@@ -38,7 +45,7 @@ function Order() {
                                                     <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.title}</h2>
                                                     <p className='order-description'>{elem.description}</p>
                                                     <p className='cart-add-price-order'>रु.{elem.price}</p>
-                                                    <button onClick={() => removeOrder(elem.id)} className='rmv-btn'>Cancel Order  </button>
+                                                    <button onClick={() => removeOrder(elem._id)} className='rmv-btn'>Cancel Order  </button>
                                                 </div>
 
                                             </div>

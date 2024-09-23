@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 
 function Cart() {
   let cart = useSelector((store) => store.ProductReducer.cart)
-
   const dispatch = useDispatch();
 
   const removeProduct = async(id) => {
@@ -30,7 +29,6 @@ function Cart() {
 
     }
   }
-
   return (
 
     <>
@@ -64,7 +62,6 @@ function Cart() {
 function CartItem({ _id, title, image, description, price, removeProduct }) {
   return (
     <>
-
       <div className='cart-container'>
         <div className='cart-scrn-bdr'>
           <div className='cart-brdr'>
