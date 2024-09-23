@@ -45,7 +45,7 @@ productsRoute.post('/add', async (req, res) => {
     const { title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText,
         discount_price_box, image} = req.body;
     try {
-        const dataAdd = new AllProduct({ title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image});
+        const dataAdd = new AllProduct({title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image});
         await dataAdd.save()
         return res.status(200).send({
             status: true,
