@@ -6,18 +6,26 @@ import { addOrder, deleteProductCart } from '../../Redux/products/action';
 import Checkout from '../../Components/Checkout/Checkout';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/footer';
+import { toast } from 'react-toastify';
 
 
 function Cart() {
   let cart = useSelector((store) => store.ProductReducer.cart)
-   
+
   const dispatch = useDispatch();
-  const removeProduct = (id) => {
-    dispatch(deleteProductCart(id))
-  };
+
+  const removeProduct = async(id) => {
+    const result = await dispatch(deleteProductCart(id));
+    if(result.success) { 
+       toast.success(result.message || 'Removed successfully');
+    } else {
+       toast.error(result.message || 'Error while removing product');
+    }
+ };
+ 
 
   const checkoutHandler = () => {
-    for(let i in cart){
+    for (let i in cart) {
       dispatch(addOrder(cart[i]))
 
     }
@@ -29,46 +37,31 @@ function Cart() {
       <Navbar />
       <div className='cart-design-screen'>
         <h2 className='cart-shopping-crt'>Shopping Cart</h2>
-        {/* <div className='cart-headinf style-4'>
-          {cart.length && cart.map((product) => {
-            return <CartItem
-              key={product.id}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              description={product.description}
-              image={product.image}
-              removeProduct={removeProduct}
-            />
-          })}
-        </div> */}
-
-{cart.length > 0 ? (
-    <div className='cart-headinf style-4'>
-      {cart.map((product) => (
-        <CartItem
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          description={product.description}
-          image={product.image}
-          removeProduct={removeProduct}
-        />
-      ))}
-    </div>
-  ) : (
-    <p className='cart-nothing-item'>You have zero items in your cart.</p>
-  )}
+        {cart.length > 0 ? (
+          <div className='cart-headinf style-4'>
+            {cart.map((product) => (
+              <CartItem
+                key={product._id}
+                _id={product._id}
+                title={product.title}
+                price={product.price}
+                description={product.description}
+                image={product.image}
+                removeProduct={removeProduct}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className='cart-nothing-item'>You have zero items in your cart.</p>
+        )}
         <Checkout cart={cart} checkoutHandler={checkoutHandler} />
-        {/* curly braces like {cart} passing a JavaScript expression as a prop, we can write anything inside curly braces and pass as a props */}
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }
 
-function CartItem({ id, title, image, description, price, removeProduct }) {
+function CartItem({ _id, title, image, description, price, removeProduct }) {
   return (
     <>
 
@@ -84,7 +77,7 @@ function CartItem({ id, title, image, description, price, removeProduct }) {
                 {description}
               </p>
               <p className='cart-add-price'>रु.{price}</p>
-              <button onClick={() => removeProduct(id)} className='rmv-btn'>
+              <button onClick={() => removeProduct(_id)} className='rmv-btn'>
                 <MdDelete />   Remove  </button>
             </div>
           </div>

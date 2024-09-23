@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom'
 import { addProductCart, getSingleProduct } from '../../Redux/products/action';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/footer'
+import { toast } from 'react-toastify';
 
 
 function SingleProduct() {
-  const[message,setMessage]=useState('')
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(store => store.ProductReducer.CurrentProduct)
@@ -23,14 +23,16 @@ function SingleProduct() {
 
   // Before dispatching the addProductCart action, it first checks if there is a currentProduct.
   //  This check ensures that the action is dispatched only if there is a valid product to add to the cart.
-  const addToCartHandler = () => {
-    currentProduct && dispatch(addProductCart(currentProduct));
-    setMessage('Item Added Successfully');
-    setTimeout(()=>{
-      setMessage('')
-    },1000)
-
-  }
+  const addToCartHandler = async () => {
+    if (currentProduct) {
+        const result = await dispatch(addProductCart(currentProduct)); 
+        if (result.status) {
+            toast.success("Added to cart Successfully!");
+        } else {
+            toast.error(result.message || 'An error occurred');
+        }
+    }
+}
 
 
   return (
@@ -93,7 +95,6 @@ function SingleProduct() {
               <p>{currentProduct.description}</p>
             </div>
             <button className='single-addto-butn' onClick={addToCartHandler}>Add to Cart</button>
-            {message && <p className='single-prdct-adaddedsuccessfully'>{message}</p>}
           </div>
         </div>
       </div>

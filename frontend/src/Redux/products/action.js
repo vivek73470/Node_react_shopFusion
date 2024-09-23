@@ -97,11 +97,21 @@ const addProductCartFailure = () => {
 
     }
 }
-const addProductCart = (prod) => (dispatch) => {
+const addProductCart = (prod) => async (dispatch) => {
     dispatch(addProductCartRequest());
-    axios.post(`${BASE_URL}/cart`, prod)
-        .then(r => dispatch(addProductCartSuccess(r.data)))
-        .catch(e => dispatch(addProductCartFailure(e.data)))
+    try {
+        const response = await axios.post(`${BASE_URL}/cart/add`, prod);
+        if (response.status === 200) {
+            dispatch(addProductCartSuccess(response.data.data));
+            return { status: true, code: 200 }
+        } else {
+            return { status: false, message: "Unexpected response from server." };
+        }
+    } catch (error) {
+        console.error('Error adding product to cart:', error);
+        dispatch(addProductCartFailure('Network error'));
+        return { status: false, code: 500, message: 'An unexpected error occurred' };
+    }
 }
 
 
@@ -113,6 +123,7 @@ const fetchCartRequest = () => {
     }
 }
 const fetchCartSuccess = (payload) => {
+    console.log("crt fetch", payload)
     return {
         type: types.FETCH_CART_SUCCESS,
         payload,
@@ -124,10 +135,10 @@ const fetchCartFailure = () => {
 
     }
 }
-const fetchCart = (payload) => (dispatch) => {
+const fetchCart = () => (dispatch) => {
     dispatch(fetchCartRequest());
     axios.get(`${BASE_URL}/cart`)
-        .then(r => dispatch(fetchCartSuccess(r.data)))
+        .then(r => dispatch(fetchCartSuccess(r.data.data)))
         .catch(e => dispatch(fetchCartFailure(e.data)))
 
 }
@@ -151,14 +162,22 @@ const deleteProductCartFailure = () => {
 
     }
 }
-const deleteProductCart = (id) => (dispatch) => {
-    dispatch(deleteProductCartRequest())
-    axios.delete(`${BASE_URL}/cart/${id}`)
-        .then((r) => {
-            dispatch(deleteProductCartSuccess(r.data))
-        })
-        .then(() => dispatch(fetchCart()))
-        .catch((e) => dispatch(deleteProductCartFailure(e.data)))
+const deleteProductCart = (id) => async (dispatch) => {
+    dispatch(deleteProductCartRequest());
+    try {
+        const response = await axios.delete(`${BASE_URL}/cart/${id}`);
+        if (response.status === 200) {
+            dispatch(deleteProductCartSuccess(response.data));
+            dispatch(fetchCart());
+            return { success: true, message: "Product removed successfully!" };
+        } else {
+            return { success: false, message: "Unexpected response from server." };
+        }
+
+    } catch (error) {
+        dispatch(deleteProductCartFailure(error));
+        return { success: false };
+    }
 }
 
 
@@ -292,16 +311,16 @@ const AddProductsFailure = () => {
         type: types.ADD_PRODUCT_FAILURE
     }
 }
-const addProducts = (data) => async(dispatch) => {
+const addProducts = (data) => async (dispatch) => {
     dispatch(AddProductsRequest());
     try {
         const res = await axios.post(`${BASE_URL}/products/add`, data)
         dispatch(AddProductsSuccess(res.data))
         dispatch(fetchData())
-        return { status:true}
+        return { status: true }
     } catch (e) {
         dispatch(AddProductsFailure(e.message))
-        return{status:false}
+        return { status: false }
     }
 }
 
@@ -327,13 +346,13 @@ const editProducts = (id, data) => async (dispatch) => {
     dispatch(EditProductsRequest());
     try {
         const res = await axios.put(`${BASE_URL}/products/${id}`, data)
-        console.log("edit",res.data)
+        console.log("edit", res.data)
         dispatch(EditProductsSuccess(res.data.data))
         dispatch(fetchData())
-        return { status:true}
+        return { status: true }
     } catch (e) {
         dispatch(EditProductsFailure(e.message))
-        return{status:false}
+        return { status: false }
     }
 }
 
@@ -355,16 +374,16 @@ const DeleteProductsFailure = () => {
         type: types.DELETE_PRODUCT_FAILURE
     }
 }
-const deleteProducts = (id) => async(dispatch) => {
+const deleteProducts = (id) => async (dispatch) => {
     dispatch(DeleteProductsRequest())
     try {
         const res = await axios.delete(`${BASE_URL}/products/${id}`)
         dispatch(DeleteProductsSuccess(res.data))
         dispatch(fetchData())
-        return { status:true}
+        return { status: true }
     } catch (e) {
         dispatch(DeleteProductsFailure(e.message))
-        return{status:false}
+        return { status: false }
     }
 }
 

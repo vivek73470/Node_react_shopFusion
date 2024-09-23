@@ -58,7 +58,6 @@ function Login() {
         e.preventDefault();
         if (validateForm()) {
             const response = await dispatch(signIn(formData));
-            console.log("frn",response)
             if (response.status) {
                 const { _id, token } = response;
                 localStorage.setItem('userId', JSON.stringify({_id, token }));
