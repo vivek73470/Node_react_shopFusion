@@ -26,8 +26,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case types.FETCH_DATA_REQUEST:
-            return {
-                // creates a new version of the current state by copying the existing state 
+            return { 
                 ...state,
                 loading: true
             }
@@ -46,6 +45,29 @@ const reducer = (state = initialState, action) => {
                 error: payload,
                 loading: false
             }
+
+
+            case types.FETCH_FILTER_REQUEST:
+                return { 
+                    ...state,
+                    loading: true
+                }
+    
+            case types.FETCH_FILTER_SUCCESS:
+                return {
+                    ...state,
+                    products: payload,
+                    error: '',
+                    loading: false
+                }
+    
+            case types.FETCH_FILTER_FAILURE:
+                return {
+                    ...state,
+                    error: payload,
+                    loading: false
+                }
+
 
         case types.GET_SINGLE_PRODUCT_REQUEST:
             return {

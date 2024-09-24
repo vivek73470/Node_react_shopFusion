@@ -17,6 +17,39 @@ const stopLoading = () => {
 }
 
 
+// Filter products 
+const fetchFilterRequest = () => {
+    return {
+        type: types.FETCH_FILTER_REQUEST,
+
+    }
+}
+const fetchFilterSuccess = (payload) => {
+    return {
+        type: types.FETCH_FILTER_SUCCESS,
+        payload,
+    }
+}
+const fetchFilterFailure = () => {
+    return {
+        type: types.FETCH_FILTER_FAILURE,
+
+    }
+}
+ const fetchFilterData = (categories) => async (dispatch) => {
+    dispatch(fetchFilterRequest());
+    try {
+        const query = categories.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
+
+        const response = await axios.get(`${BASE_URL}/products/filter-products?${query}`);
+        dispatch(fetchFilterSuccess(response.data.data));
+    } catch (error) {
+        dispatch(fetchFilterFailure(error.message || 'Something went wrong'));
+    }
+};
+
+
+
 // Fetch all products 
 const fetchDataRequest = () => {
     return {
@@ -222,13 +255,13 @@ const emptyCartSuccess = () => {
         type: types.EMPTY_CART_SUCCESS
     }
 }
-const emptyCart = (payload) => async(dispatch) => {
+const emptyCart = (payload) => async (dispatch) => {
     dispatch(emptyCartRequest());
     const { _id } = payload;
-   const result = await dispatch(deleteProductCart(_id))
-   if(result.success){
-       dispatch(emptyCartSuccess)
-   }
+    const result = await dispatch(deleteProductCart(_id))
+    if (result.success) {
+        dispatch(emptyCartSuccess)
+    }
 
 };
 
@@ -395,5 +428,5 @@ const deleteProducts = (id) => async (dispatch) => {
 
 export {
     fetchData, deleteOrderProducts, editProducts, deleteProducts, emptyCart, fetchOrder, getSingleProduct,
-    addProductCart, fetchCart, deleteProductCart, addOrder, addProducts, startLoading, stopLoading
+    addProductCart, fetchCart, deleteProductCart, addOrder, addProducts, fetchFilterData, startLoading, stopLoading
 };
