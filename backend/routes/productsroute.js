@@ -6,17 +6,32 @@ const productsRoute = express.Router();
 // filter products
 productsRoute.get('/filter-products', async (req, res) => {
     try {
-        const categories = req.query.category;
+        const { category, brand_namez } = req.query;
 
-        const filter = categories ? { category: { $in: Array.isArray(categories) ? categories : [categories] } } : {};
+        const filter = [];
 
-        const products = await AllProduct.find(filter);
+        if (category) {
+            filter.push({ category: { $in: Array.isArray(category) ? category : [category] } });
+        }
 
-        res.status(200).json({ success: true, data: products });
+        if (brand_namez) {
+            filter.push({ brand_namez: { $in: Array.isArray(brand_namez) ? brand_namez : [brand_namez] } });
+        }
+
+        const query = filter.length ? { $or: filter } : {};
+
+        const products = await AllProduct.find(query);
+
+
+        res.status(200).json({ status: true, data: products });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+
+        res.status(500).json({ status: false, message: error.message });
     }
 });
+
+
+
 
 
 // All products 
