@@ -19,12 +19,12 @@ function Dashboard() {
     if (id) {
         const result = await dispatch(deleteProducts(id));
         if (result.status) {
-            toast("Deleted Successfully!"); 
+            toast.success("Deleted Successfully!"); 
         } else {
-            toast("Error while deleting!"); 
+            toast.error("Error while deleting!"); 
         }
     } else {
-        toast("Invalid product ID!"); 
+        toast.error("Invalid product ID!"); 
     }
 };
 

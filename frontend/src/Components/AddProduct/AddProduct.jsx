@@ -37,9 +37,9 @@ function Addproduct() {
     const result = await dispatch(addProducts(data));
     if (result.status) {
       navigate('/admin'); 
-        toast("Product added successfully!");
+        toast.success("Product added successfully!");
     } else {
-        toast("Error while adding product!");
+        toast.error("Error while adding product!");
     }
 };
 

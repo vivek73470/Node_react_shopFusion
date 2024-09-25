@@ -247,10 +247,13 @@ const addOrder = (payload) => async (dispatch) => {
         const response = await axios.post(`${BASE_URL}/orders/add`, payload);
         dispatch(addOrderSuccess(response.data.data));
         dispatch(emptyCart(payload));
+        return response.status;
     } catch (error) {
         dispatch(addOrderFailure(error));
+        throw error;
     }
 };
+
 
 
 

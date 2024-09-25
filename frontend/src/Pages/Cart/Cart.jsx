@@ -22,13 +22,21 @@ function Cart() {
     }
  };
  
-
-  const checkoutHandler = () => {
-    for (let i in cart) {
-      dispatch(addOrder(cart[i]))
-
+  const checkoutHandler = async () => {
+    try {
+        for (let i in cart) {
+            const responseStatus = await dispatch(addOrder(cart[i]));
+            if (responseStatus === 200) {
+                toast.success(`Order for ${cart[i].title} added successfully!`);
+            } else {
+                toast.error(`Failed to add order for ${cart[i].title}.`);
+            }
+        }
+    } catch (error) {
+        toast.error("An error occurred during the checkout process.");
     }
-  }
+};
+
   return (
 
     <>

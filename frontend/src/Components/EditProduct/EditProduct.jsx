@@ -51,10 +51,10 @@ function EditProduct() {
             const response = await dispatch(editProducts(id, data))
             if (response.status) {
                 navigate('/admin')
-                toast("updated Successfully!");
+                toast.success("updated Successfully!");
             }
             else {
-                toast("updation failed!");
+                toast.error("updation failed!");
             }
         } catch (e) {
             console.log(e)
