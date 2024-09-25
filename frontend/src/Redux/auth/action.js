@@ -102,7 +102,7 @@ export const signIn = (formData) => async (dispatch) => {
         const users = await res.json();
         if (res.status === 200) {
             dispatch(SignInSuccess({ status: true }));
-            return { status: true,token:users.token,_id:users.user._id };
+            return { status: true, token: users.token, _id: users.user._id };
         } else {
             return { status: false, message: users.message };
         }
@@ -184,7 +184,7 @@ const SetInFailure = (payload) => {
     }
 
 }
-export const fetchUserData = (userId) => async(dispatch) => {
+export const fetchUserData = (userId) => async (dispatch) => {
     dispatch(SetInRequest());
     try {
         const response = await axios.get(`${BASE_URL}/user/${userId}`);
@@ -213,19 +213,19 @@ const UpdateFailure = () => {
         type: UPDATE_FAILURE
     }
 }
-export const UpdateProf = (id, data) => async(dispatch) => {
+export const UpdateProf = (id, data) => async (dispatch) => {
     dispatch(UpdateRequest());
     try {
         const res = await axios.put(`${BASE_URL}/user/${id}`, data);
-        if(res.status === 200){
+        if (res.status === 200) {
             dispatch(UpdateSuccess(res.data.data));
-            return{status:true}
-        }if(res.status === 404){
-            return{staus:false,code:404,message:res.data.message}
+            return { status: true }
+        } if (res.status === 404) {
+            return { staus: false, code: 404, message: res.data.message }
         }
     } catch (err) {
         dispatch(UpdateFailure(err.response ? err.response.data : err.message));
-        return{status:false,message:err.message}
+        return { status: false, message: err.message }
     }
 }
 
@@ -250,14 +250,13 @@ const updateFailureEmail = () => {
 export const RequestchangePassword = (emailData) => async (dispatch) => {
     dispatch(updateRequestEmail());
     try {
-        const response = await axios.post(`${BASE_URL}/user/forgot-password`,emailData);
-
-        if(response.status === 200){
+        const response = await axios.post(`${BASE_URL}/user/forgot-password`, emailData);
+        if(response.data.status === true) {
             dispatch(updateSuccessEmail(response.data.data))
-            return{status:true,message:response.message}
+            return { status: true, message: response.data.message }
         }
-        if(response.status === 404){
-            return{status:false,message:response.message}
+        else {
+            return { status: false, message: response.data.message };
         }
     } catch (error) {
         dispatch(updateFailureEmail('error fetching user details'));
@@ -284,14 +283,14 @@ const changeFailurePassword = () => {
         type: CHANGGE_PASS_FAILURE
     }
 }
-export const Changepassword = (id,passwordData) => async(dispatch) => {
-    console.log("id and pas",id,passwordData)
+export const Changepassword = (id, passwordData) => async (dispatch) => {
+    console.log("id and pas", id, passwordData)
     dispatch(changeRequestPassword());
     try {
-        const response = await axios.put(`${BASE_URL}/user/reset-password/${id}`, passwordData); 
+        const response = await axios.put(`${BASE_URL}/user/reset-password/${id}`, passwordData);
         if (response.status === 200) {
             dispatch(changeSuccessPassword());
-            return { status: true, message: response.data.message }; 
+            return { status: true, message: response.data.message };
         }
     } catch (error) {
         console.error('Error changing password:', error);

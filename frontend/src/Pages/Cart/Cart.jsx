@@ -15,7 +15,7 @@ function Cart() {
 
   const removeProduct = async(id) => {
     const result = await dispatch(deleteProductCart(id));
-    if(result.success) { 
+    if(result.status) { 
        toast.success(result.message || 'Removed successfully');
     } else {
        toast.error(result.message || 'Error while removing product');

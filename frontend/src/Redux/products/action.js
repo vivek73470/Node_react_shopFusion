@@ -36,17 +36,27 @@ const fetchFilterFailure = () => {
 
     }
 }
- const fetchFilterData = (categories) => async (dispatch) => {
+
+const fetchFilterData = (categories) => async (dispatch) => {
     dispatch(fetchFilterRequest());
     try {
-        const query = categories.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
+        const { category, brand_namez } = categories;
 
-        const response = await axios.get(`${BASE_URL}/products/filter-products?${query}`);
+        const categoryParams = category.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
+        
+        const brandParams = brand_namez.map(brand => `brand_namez=${encodeURIComponent(brand)}`).join('&');
+
+        const queryString = `${categoryParams}&${brandParams}`;
+        console.log("string", queryString); 
+
+        const response = await axios.get(`${BASE_URL}/products/filter-products?${queryString}`);
+        
         dispatch(fetchFilterSuccess(response.data.data));
     } catch (error) {
         dispatch(fetchFilterFailure(error.message || 'Something went wrong'));
     }
 };
+
 
 
 
@@ -201,14 +211,14 @@ const deleteProductCart = (id) => async (dispatch) => {
         if (response.status === 200) {
             dispatch(deleteProductCartSuccess(response.data));
             dispatch(fetchCart());
-            return { success: true, message: "Product removed successfully!" };
+            return { status: true, message: "Product removed successfully!" };
         } else {
-            return { success: false, message: "Unexpected response from server." };
+            return { status: false, message: "Unexpected response from server." };
         }
 
     } catch (error) {
         dispatch(deleteProductCartFailure(error));
-        return { success: false };
+        return { status: false };
     }
 }
 
@@ -259,7 +269,7 @@ const emptyCart = (payload) => async (dispatch) => {
     dispatch(emptyCartRequest());
     const { _id } = payload;
     const result = await dispatch(deleteProductCart(_id))
-    if (result.success) {
+    if (result.status) {
         dispatch(emptyCartSuccess)
     }
 

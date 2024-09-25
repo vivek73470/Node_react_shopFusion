@@ -38,8 +38,6 @@ function Forgot() {
 
     }
 
-
-
     return (
         <>
             <Navbar />
