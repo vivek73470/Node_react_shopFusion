@@ -1,13 +1,16 @@
 import React from 'react'
 import './contact.css'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import Footer from '../../Components/Footer/footer';
 import Navbar from '../../Components/Navbar/Navbar';
+import { Nodemailer } from '../../Redux/auth/action';
+import { toast } from 'react-toastify';
 
 
 
 function Contactus() {
-  const [submitted, setSubmitted] = useState('');
+  const dispatch = useDispatch();
   const initState ={
     name: "",
     email: "",
@@ -27,14 +30,16 @@ const handleChange = (e) =>{
 
 }
 
-const handleSubmit =(e)=>{
+const handleSubmit =async(e)=>{
   e.preventDefault();
-  setFormData(initState);
-  setSubmitted("Thank you for contacting us! We'll get back to you soon.")
-  setTimeout(()=>{
-    setSubmitted('')
-  },3000)
-
+ const res = await dispatch(Nodemailer(formData))
+ if(res.status){
+  setFormData(initState)
+toast.success(res.message || 'Mailed Successfully')
+ }else{
+toast.error(res.message || 'Error while sending mail')
+ }
+ 
 }
   return (
     <>
@@ -94,7 +99,6 @@ const handleSubmit =(e)=>{
               </textarea>
           </div>
           <input type="submit" className='contact-bnt' value="Submit"/>
-          {submitted && <p className='contact-after-submitt'>{submitted}</p>}
         </form>
       </div>
       

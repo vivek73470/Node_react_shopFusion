@@ -10,6 +10,8 @@ const Filter = () => {
   const [searchParams, setSerchparams] = useSearchParams()
   const [category, setCategory] = useState(searchParams.getAll("category") || [])
   const [brand_namez, setBrandNamez] = useState(searchParams.getAll("brand_namez") || []);
+  const [size, setSize] = useState(searchParams.getAll("size") || []);
+  const [filtercategory, setfiltercategory] = useState(searchParams.getAll("filtercategory") || []);
 
   const handleChange = (e) => {
     const { value, checked } = e.target;
@@ -39,13 +41,39 @@ const Filter = () => {
     // dispatch(fetchFilterData(updatedBrands));
   };
 
+
+  const handleSizeChange = (e) => {
+    const { value, checked } = e.target;
+    let updatedSize = [...size];
+
+    if (checked) {
+      updatedSize.push(value);
+    } else {
+      updatedSize = updatedSize.filter(size => size !== value);
+    }
+    setSize(updatedSize);
+    // dispatch(fetchFilterData(updatedBrands));
+  };
+
+  const handlefiltercategoryChange = (e) => {
+    const { value, checked } = e.target;
+    let updatedfiltercategory = [...filtercategory];
+
+    if (checked) {
+      updatedfiltercategory.push(value);
+    } else {
+      updatedfiltercategory = updatedfiltercategory.filter(filtercategory => filtercategory !== value);
+    }
+    setfiltercategory(updatedfiltercategory);
+    // dispatch(fetchFilterData(updatedBrands));
+  };
   
   useEffect(() => {
-    const params = { category, brand_namez };
+    const params = { category, brand_namez,size,filtercategory };
     setSerchparams(params);
 
-    dispatch(fetchFilterData({ category, brand_namez }));
-  }, [category, brand_namez, setSerchparams, dispatch]);
+    dispatch(fetchFilterData({ category, brand_namez,size,filtercategory }));
+  }, [category, brand_namez,size,filtercategory, setSerchparams, dispatch]);
   
 
   return (
@@ -81,6 +109,37 @@ const Filter = () => {
       </div>
 
       <div>
+        <h3>filtercategory</h3>
+        <div className="filter-category">
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="Jeans"
+            checked={filtercategory.includes("Jeans")}
+            onChange={handlefiltercategoryChange} />
+          <label className="filter-label-dgn">Jeans</label>
+        </div>
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="Tshirts"
+            checked={filtercategory.includes("Tshirts")}
+            onChange={handlefiltercategoryChange} />
+          <label className="filter-label-dgn">Tshirts</label>
+        </div>
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="Pants"
+            checked={filtercategory.includes("Pants")}
+            onChange={handlefiltercategoryChange} />
+          <label className="filter-label-dgn">Pants</label>
+        </div>
+      </div>
+      </div>
+      
+
+      <div>
         <h3>Brand</h3>
         <div className="filter-category">
         <div className="filter-pdng">
@@ -106,6 +165,36 @@ const Filter = () => {
             checked={brand_namez.includes("hm")}
             onChange={handleBrandChange} />
           <label className="filter-label-dgn">H&M</label>
+        </div>
+      </div>
+      </div>
+
+      <div>
+        <h3>Size</h3>
+        <div className="filter-category">
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="M"
+            checked={size.includes("M")}
+            onChange={handleSizeChange} />
+          <label className="filter-label-dgn">M</label>
+        </div>
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="XL"
+            checked={size.includes("XL")}
+            onChange={handleSizeChange} />
+          <label className="filter-label-dgn">XL</label>
+        </div>
+        <div className="filter-pdng">
+        <input type="checkbox"
+            id="filtr-chck"
+            value="XXL"
+            checked={size.includes("XXL")}
+            onChange={handleSizeChange} />
+          <label className="filter-label-dgn">XXL</label>
         </div>
       </div>
       </div>

@@ -40,14 +40,17 @@ const fetchFilterFailure = () => {
 const fetchFilterData = (categories) => async (dispatch) => {
     dispatch(fetchFilterRequest());
     try {
-        const { category, brand_namez } = categories;
+        const { category, brand_namez,size,filtercategory } = categories;
 
         const categoryParams = category.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
+
+        const sizeParams = size.map(sizecat => `size=${encodeURIComponent(sizecat)}`).join('&');
         
         const brandParams = brand_namez.map(brand => `brand_namez=${encodeURIComponent(brand)}`).join('&');
 
-        const queryString = `${categoryParams}&${brandParams}`;
-        console.log("string", queryString); 
+        const filtercategoryParams = filtercategory.map(filtercat => `filtercategory=${encodeURIComponent(filtercat)}`).join('&');
+
+        const queryString = `${categoryParams}&${brandParams}&${sizeParams}&${filtercategoryParams}`;
 
         const response = await axios.get(`${BASE_URL}/products/filter-products?${queryString}`);
         

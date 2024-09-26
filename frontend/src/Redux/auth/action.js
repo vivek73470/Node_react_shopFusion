@@ -3,7 +3,7 @@
 import axios from "axios";
 import { auth, provider } from '../../firebase/firebase.config'
 import { signInWithPopup } from 'firebase/auth'
-import { json } from "react-router-dom";
+
 
 export const SIGNIN_GOOGLE_REQUEST = 'SIGNIN_GOOGLE_REQUEST';
 export const SIGNIN_GOOGLE_SUCCESS = 'SIGNIN_GOOGLE_SUCCESS';
@@ -33,6 +33,10 @@ export const UPDATE_PASS_FAILURE = 'UPDATE_PASS_FAILURE';
 export const CHANGGE_PASS_REQUEST = 'CHANGGE_PASS_REQUEST';
 export const CHANGGE_PASS_SUCCESS = 'CHANGGE_PASS_SUCCESS';
 export const CHANGGE_PASS_FAILURE = 'CHANGGE_PASS_FAILURE';
+
+export const CONTACT_MAILER_REQUEST = 'CONTACT_MAILER_REQUEST';
+export const CONTACT_MAILER_SUCCESS = 'CONTACT_MAILER_SUCCESS';
+export const CONTACT_MAILER_FAILURE = 'CONTACT_MAILER_FAILURE';
 
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -251,7 +255,7 @@ export const RequestchangePassword = (emailData) => async (dispatch) => {
     dispatch(updateRequestEmail());
     try {
         const response = await axios.post(`${BASE_URL}/user/forgot-password`, emailData);
-        if(response.data.status === true) {
+        if (response.data.status === true) {
             dispatch(updateSuccessEmail(response.data.data))
             return { status: true, message: response.data.message }
         }
@@ -296,5 +300,39 @@ export const Changepassword = (id, passwordData) => async (dispatch) => {
         console.error('Error changing password:', error);
         dispatch(changeFailurePassword('Failed to change password.'));
         return { status: false, message: error.response ? error.response.data.message : error.message };
+    }
+}
+
+
+// node mailer
+const MailRequest = () => {
+    return {
+        type: CONTACT_MAILER_REQUEST
+    }
+}
+const MailSuccess = (payload) => {
+    return {
+        type: CONTACT_MAILER_SUCCESS,
+        payload,
+    }
+}
+const MailFailure = () => {
+    return {
+        type: CONTACT_MAILER_FAILURE
+    }
+}
+
+export const Nodemailer = (initState) => async (dispatch) => {
+    dispatch(MailRequest());
+    try {
+        const response = await axios.post(`${BASE_URL}/contact/send`, initState)
+        if (response.status === 200) {
+            dispatch(MailSuccess())
+            return { status: true, message: response.data.message }
+        }
+    } catch (error) {
+        dispatch(MailFailure('Failed to mail'))
+        return { status: false, message: error.response ? error.response.data.message : error.message }
+
     }
 }
