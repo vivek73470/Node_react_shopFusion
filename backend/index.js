@@ -4,6 +4,7 @@ const userRouter = require('./routes/userroute')
 const productsRoute = require('./routes/productsroute')
 const cartRouter = require('./routes/cartroute');
 const orderRouter = require('./routes/order.route')
+const contactRouter = require('./routes/contactroute')
 const cors = require('cors');
 require('dotenv').config()
 const app = express();
@@ -17,6 +18,7 @@ app.use('/user',userRouter)
 app.use('/products',productsRoute)
 app.use('/cart',cartRouter)
 app.use('/orders',orderRouter)
+app.use('/contact',contactRouter)
 
 
 app.listen(process.env.port, async () => {

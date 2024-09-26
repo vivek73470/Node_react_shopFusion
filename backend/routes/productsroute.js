@@ -32,8 +32,6 @@ productsRoute.get('/filter-products', async (req, res) => {
 
 
 
-
-
 // All products 
 productsRoute.get('/', async (req, res) => {
     try {
