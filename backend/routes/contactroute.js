@@ -43,20 +43,20 @@ contactRouter.post('/send', async (req, res) => {
 
         // Prepare email content
         const emailContent = `
-            <h3>New Contact Message</h3>
+            <h3>Contact Form Message</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Message:</strong> ${message}</p>
         `;
 
-        await sendMail(process.env.MailerGmail, 'New Contact Form Submission', emailContent);
-        res.status(200).json({ message: 'Contact form submitted successfully and email sent!' });
+        await sendMail(process.env.MailerGmail, 'Contact Form Submission', emailContent);
+        res.status(200).json({ message: 'Email sent successfully!' });
 
 
     } catch (error) {
         console.error('Error while sending email:', error);
-        res.status(500).json({ error: 'Something went wrong, please try again.' });
+        res.status(500).json({ message: 'Something went wrong, please try again.' });
     }
 })
 

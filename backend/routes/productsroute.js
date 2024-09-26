@@ -6,7 +6,7 @@ const productsRoute = express.Router();
 // filter products
 productsRoute.get('/filter-products', async (req, res) => {
     try {
-        const { category, brand_namez } = req.query;
+        const { category, brand_namez,filtercategory,size } = req.query;
 
         const filter = [];
 
@@ -16,6 +16,14 @@ productsRoute.get('/filter-products', async (req, res) => {
 
         if (brand_namez) {
             filter.push({ brand_namez: { $in: Array.isArray(brand_namez) ? brand_namez : [brand_namez] } });
+        }
+
+        if (filtercategory) {
+            filter.push({ filtercategory: { $in: Array.isArray(filtercategory) ? filtercategory : [filtercategory] } });
+        }
+
+        if (size) {
+            filter.push({ size: { $in: Array.isArray(size) ? size : [size] } });
         }
 
         const query = filter.length ? { $or: filter } : {};
@@ -29,6 +37,8 @@ productsRoute.get('/filter-products', async (req, res) => {
         res.status(500).json({ status: false, message: error.message });
     }
 });
+
+
 
 
 
@@ -73,9 +83,9 @@ productsRoute.get('/:id', async (req, res) => {
 // add products
 productsRoute.post('/add', async (req, res) => {
     const { title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText,
-        discount_price_box, image } = req.body;
+        discount_price_box, image,size,filtercategory } = req.body;
     try {
-        const dataAdd = new AllProduct({ title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image });
+        const dataAdd = new AllProduct({ title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image,size,filtercategory });
         await dataAdd.save()
         return res.status(200).send({
             status: true,
