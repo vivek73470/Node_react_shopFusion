@@ -12,6 +12,7 @@ function SingleProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(store => store.ProductReducer.CurrentProduct)
+  console.log("sing",currentProduct)
 
 
 
@@ -44,8 +45,8 @@ function SingleProduct() {
             <img src={currentProduct.image} alt='info_image' />
           </div>
           <div className='single-product-details'>
-            <p className='single-product-fashion'>Fashion Store</p>
-            <p className='single-product-men'>Gambling Problem Printed Premium Glass Cover For OnePlus 9RT (Impact Resistant, Matte Finish)</p>
+            <p className='single-product-fashion'>{currentProduct.brand_namez}</p>
+            <p className='single-product-men'>{currentProduct.title} {currentProduct.filtercategory}</p>
             <div className='single-product-actdiscount'>
               <p className='single-product-discount'>रु.{currentProduct.discountedPriceText}</p>
               <p className='single-product-actual'>{currentProduct.actualPriceText}रु.</p>
@@ -74,7 +75,8 @@ function SingleProduct() {
               <p className='single-page-border'></p>
             </div>
             <div>
-              <p className='single-product-select'> Select Size</p>
+              <p className='single-product-select'>Size</p>
+              {currentProduct.size}
             </div>
             <div className='single-product-sizeflex'>
             </div>

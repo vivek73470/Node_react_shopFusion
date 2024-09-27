@@ -50,6 +50,8 @@ function Cart() {
                 key={product._id}
                 _id={product._id}
                 title={product.title}
+                filtercategory={product.filtercategory}
+                brand_namez={product.brand_namez}
                 price={product.price}
                 description={product.description}
                 image={product.image}
@@ -67,7 +69,7 @@ function Cart() {
   )
 }
 
-function CartItem({ _id, title, image, description, price, removeProduct }) {
+function CartItem({ _id, title, image, description, price,filtercategory, removeProduct,brand_namez }) {
   return (
     <>
       <div className='cart-container'>
@@ -77,7 +79,8 @@ function CartItem({ _id, title, image, description, price, removeProduct }) {
               <img src={image} alt="" />
             </div>
             <div className='cartitm-bdr'>
-              <h2>{title}</h2>
+              <h2>{brand_namez}</h2>
+              <h2>{title}-{filtercategory}</h2>
               <p>
                 {description}
               </p>

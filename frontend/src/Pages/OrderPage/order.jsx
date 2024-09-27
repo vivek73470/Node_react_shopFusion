@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 function Order() {
     const dispatch = useDispatch();
     const orders = useSelector((store) => store.ProductReducer.orders);
+  
 
 
     useEffect(() => {
@@ -42,7 +43,8 @@ function Order() {
                                                     <img src={elem.image} alt="" />
                                                 </div>
                                                 <div className='cartitm-bdr'>
-                                                    <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.title}</h2>
+                                                    <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.brand_namez}</h2>
+                                                    <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.title} {elem.filtercategory}</h2>
                                                     <p className='order-description'>{elem.description}</p>
                                                     <p className='cart-add-price-order'>रु.{elem.price}</p>
                                                     <button onClick={() => removeOrder(elem._id)} className='rmv-btn'>Cancel Order  </button>

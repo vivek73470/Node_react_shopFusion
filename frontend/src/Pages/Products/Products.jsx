@@ -40,7 +40,7 @@ const Products = () => {
                   <div className="productlist-design" key={item.id} >
                     <img className='product-imgstyle' src={item.image} alt="cloth products" />
                     <p className='product-brandname'>{item.brand_namez}</p>
-                    <p className='product-actual-title'>{item.title}</p>
+                    <p className='product-actual-title'>{item.title} {item.filtercategory}</p>
                     <div className='product-price-description'>
                       <p className='product-discount-price'>₹{item.discountedPriceText}</p>
                       <p className='product-actual-price'>₹{item.actualPriceText}</p>
