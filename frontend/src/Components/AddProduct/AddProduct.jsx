@@ -43,7 +43,9 @@ function Addproduct() {
     filtercategory: '',
     size: '',
   })
-
+  const handleBack = () => {
+    navigate(-1)
+  }
 
 
   const handleChange = (e) => {
@@ -62,7 +64,12 @@ function Addproduct() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
-    setPreviewImage(URL.createObjectURL(file)); // Create image preview URL
+    setPreviewImage(URL.createObjectURL(file)); 
+
+    setData((prevData) => ({
+      ...prevData,
+      image: file.name // This sets the image name for validation purposes
+    }));
   };
 
   const validateForm = () => {
@@ -85,7 +92,7 @@ function Addproduct() {
       valid = false;
     }
     if (!data.plp.trim()) {
-      newErrors.plp = 'plp is required';
+      newErrors.plp = 'About oversize is required';
       valid = false;
     }
     if (!data.brand_namez.trim()) {
@@ -109,7 +116,7 @@ function Addproduct() {
       valid = false;
     }
     if (!data.discount_price_box.trim()) {
-      newErrors.discount_price_box = 'discount Price Text is required';
+      newErrors.discount_price_box = 'discount Price box is required';
       valid = false;
     }
     if (!data.actualPriceText.trim()) {
@@ -121,6 +128,7 @@ function Addproduct() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(e)
     e.preventDefault();
     if (validateForm()) {
       try {
@@ -188,7 +196,7 @@ function Addproduct() {
                     type="text"
                     className='addproduct-input'
                     id="title"
-                    placeholder="enter title"
+                    placeholder="------"
                     value={data.title}
                     onChange={handleChange}
                   />
@@ -200,13 +208,13 @@ function Addproduct() {
 
               <div className='add-admin-prd-rww'>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Size</label><br />
                   <input
                     name='size'
                     type="text"
                     className='addproduct-input'
                     id="author"
-                    placeholder="enter size"
+                    placeholder="------"
                     value={data.size}
                     onChange={handleChange}
                   />
@@ -215,13 +223,13 @@ function Addproduct() {
                   </div>
                 </div>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Brand Name</label><br />
                   <input
                     name='brand_namez'
                     type="text"
                     className='addproduct-input'
                     id="author"
-                    placeholder="enter brand_namez"
+                    placeholder="------"
                     value={data.brand_namez}
                     onChange={handleChange}
                   />
@@ -234,13 +242,13 @@ function Addproduct() {
 
               <div className='add-admin-prd-rww'>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Design </label><br />
                   <input
                     name='plp'
                     type="text"
                     className='addproduct-input'
                     id="title"
-                    placeholder="enter plp "
+                    placeholder="------"
                     value={data.plp}
                     onChange={handleChange}
 
@@ -252,13 +260,13 @@ function Addproduct() {
                   </div>
                 </div>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Price</label><br />
                   <input
                     name='price'
                     type="text"
                     className='addproduct-input'
                     id="image"
-                    placeholder=" enter price"
+                    placeholder="------"
                     value={data.price}
                     onChange={handleChange}
 
@@ -273,13 +281,13 @@ function Addproduct() {
 
               <div className='add-admin-prd-rww'>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Actual Price</label><br />
                   <input
                     name='actualPriceText'
                     type="text"
                     className='addproduct-input'
                     id="image"
-                    placeholder="enter actualPriceText"
+                    placeholder="------"
                     value={data.actualPriceText}
                     onChange={handleChange}
                   />
@@ -289,13 +297,13 @@ function Addproduct() {
                   </div>
                 </div>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Discount Price Box</label><br />
                   <input
                     name='discount_price_box'
                     type="text"
                     className='addproduct-input'
                     id="image"
-                    placeholder="enter discount_price_box"
+                    placeholder="------"
                     value={data.discount_price_box}
                     onChange={handleChange}
 
@@ -311,28 +319,28 @@ function Addproduct() {
 
               <div className='add-admin-prd-rww'>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Discount Price Text</label><br />
                   <input
                     name='discountedPriceText'
                     type="text"
                     className='addproduct-input'
                     id="image"
-                    placeholder="enter discountedPriceText"
+                    placeholder="------"
                     value={data.discountedPriceText}
                     onChange={handleChange}
                   />
                   <div>
-                    {errors.actualPriceText && <span className="error">{errors.actualPriceText}</span>}
+                    {errors.actualPriceText && <span className="error">{errors.discountedPriceText}</span>}
                   </div>
                 </div>
                 <div className='addprdct-admin-label'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Filter Category</label><br />
                   <input
                     name='filtercategory'
                     type="text"
                     className='addproduct-input'
                     id="image"
-                    placeholder="enter filtercategory"
+                    placeholder="------"
                     value={data.filtercategory}
                     onChange={handleChange}
                   />
@@ -345,13 +353,13 @@ function Addproduct() {
 
               <div className='add-admin-prd-rww'>
                 <div className='addprdct-admin-label-des'>
-                  <label>Enter Title</label><br />
+                  <label>Enter Description</label><br />
                   <input
                     name='description'
                     type="text"
                     className='addproduct-input'
                     id="author"
-                    placeholder="enter description"
+                    placeholder="------"
                     value={data.description}
                     onChange={handleChange}
                   />
@@ -371,22 +379,26 @@ function Addproduct() {
                   onChange={handleFileChange}
                   style={{ display: 'none' }}
                 />
-                <div
-                  className="upload-box"
-                  onClick={() => document.getElementById('imageInput').click()}
-                >
+                <div className={`upload-box ${!previewImage ? 'border-visible' : ''}`}
+                  onClick={() => document.getElementById('imageInput').click()}>
                   {previewImage ? (
                     <img src={previewImage} alt="Preview" className="preview-image" />
                   ) : (
                     <span className="upload-text">Upload Image</span>
                   )}
                 </div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
                 {errors.image && <span className="error">{errors.image}</span>}
               </div>
             </div>
           </div>
-          <button className='addproduct-button'>Submit</button>
+          <div className='goback-btn'>
+            <button className='addproduct-button'>Submit</button>
+            <button className='addproduct-button' onClick={handleBack}>Go back</button>
+          </div>
         </form>
+
       </div>
 
     </>

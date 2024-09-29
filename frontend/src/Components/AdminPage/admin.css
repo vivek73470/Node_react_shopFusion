@@ -40,3 +40,12 @@
 
   }
   
+  @media screen and (max-width:450px){
+ 
+    .page-content{
+      background-color: #f4f7fe;
+      padding: 110px 18px 35px 18px;
+     }
+
+  }
+  
