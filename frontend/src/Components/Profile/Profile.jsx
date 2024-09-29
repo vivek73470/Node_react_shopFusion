@@ -48,7 +48,9 @@ function Profile() {
             }}
           >
             <CgProfile />
+        
           </span>
+          <p className='profile-text'>Profile</p>
           {
             open && (
               <div

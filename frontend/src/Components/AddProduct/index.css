@@ -12,35 +12,37 @@ width: 100%;
   
   .addproduct-title {
     font-size: 24px;
+    font-weight: 600;
+    color: #1f1b2d;
     margin-bottom: 32px;
   }
   
   .addproduct-form {
     display: flex;
-    flex-direction: column;
+    column-gap: 20px;
   }
   
   .addproduct-input {
-    width: 45%;
+    width: 100%;
     outline: none;
     margin-bottom: 15px;
-    padding: 14px 10px;
+    padding: 12px 10px;
     border: 1px solid #ddd;
-    border-radius: 14px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 15px;
   }
   .addproduct-input-drp {
-    width: 44.9%;
+    width: 100%;
     outline: none;
     margin-bottom: 15px;
-    padding: 14px 10px;
+    padding: 12px 10px;
     border: 1px solid #ddd;
-    border-radius: 14px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 15px;
   }
   
   .addproduct-button {
-    background: #db4444;
+    background: #ff6c68;
     border: 0;
     color: #fff;
     padding: 15px 28px;
@@ -59,13 +61,39 @@ width: 100%;
     border: 1px solid red;
   }
 
-  
   .add-admin-prd-rww{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 25px;
   }
+.frm-leftdiv{
+  width: 60%;
+}
+.frm-rightdiv{
+  width: 35%;
+}
+.addprdct-admin-label{
+width: 45%;
+}
+.addprdct-admin-label>label{
+  color: #282823;
+  font-size: 19.102px;
+  font-weight: 500;
+  margin-bottom: 5px;
+
+}
+.addprdct-admin-label-des{
+width: 100%;
+}
+.addprdct-admin-label-des>label{
+  color: #282823;
+  font-size: 19.102px;
+  font-weight: 500;
+  margin-bottom: 5px;
+
+}
+
 
   @media screen and (max-width:767px){
     .add-admin-prd-rww{

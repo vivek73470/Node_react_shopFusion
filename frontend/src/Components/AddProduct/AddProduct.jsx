@@ -13,6 +13,22 @@ function Addproduct() {
   const dispatch = useDispatch();
   const [imageFile, setImageFile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [errors, setErrors] = useState(
+    {
+      category: '',
+      title: '',
+      price: '',
+      description: '',
+      plp: '',
+      brand_namez: '',
+      discountedPriceText: '',
+      actualPriceText: '',
+      discount_price_box: '',
+      image: '',
+      filtercategory: '',
+      size: '',
+    }
+  );
   const [data, setData] = useState({
     category: '',
     title: '',
@@ -35,53 +51,106 @@ function Addproduct() {
       ...prevdata,
       [e.target.name]: e.target.value
     }))
+    setErrors({
+      ...errors,
+      [e.target.name]: ''
+    })
 
   }
 
   // Handle image file selection and preview
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setImageFile(file); // Set the selected image file
+    setImageFile(file);
     setPreviewImage(URL.createObjectURL(file)); // Create image preview URL
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {};
+    if (!data.category.trim()) {
+      newErrors.category = 'Category is required';
+      valid = false;
+    }
+    if (!data.title.trim()) {
+      newErrors.title = 'Title is required';
+      valid = false;
+    }
+    if (!data.price.trim()) {
+      newErrors.price = 'Price is required';
+      valid = false;
+    }
+    if (!data.description.trim()) {
+      newErrors.description = 'description is required';
+      valid = false;
+    }
+    if (!data.plp.trim()) {
+      newErrors.plp = 'plp is required';
+      valid = false;
+    }
+    if (!data.brand_namez.trim()) {
+      newErrors.brand_namez = 'Brand name is required';
+      valid = false;
+    }
+    if (!data.discountedPriceText.trim()) {
+      newErrors.discountedPriceText = 'discounted Price Text is required';
+      valid = false;
+    }
+    if (!data.size.trim()) {
+      newErrors.size = 'size is required';
+      valid = false;
+    }
+    if (!data.filtercategory.trim()) {
+      newErrors.filtercategory = 'filtercategory is required';
+      valid = false;
+    }
+    if (!data.image.trim()) {
+      newErrors.image = 'image is required';
+      valid = false;
+    }
+    if (!data.discount_price_box.trim()) {
+      newErrors.discount_price_box = 'discount Price Text is required';
+      valid = false;
+    }
+    if (!data.actualPriceText.trim()) {
+      newErrors.actualPriceText = 'actual Price Text is required';
+      valid = false;
+    }
+    setErrors(newErrors);
+    return valid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (validateForm()) {
+      try {
+        // step 1
+        const uniqueFileName = `${Date.now()}_${imageFile.name}`;
+        const storageRef = ref(storage, `images/${uniqueFileName}`);
 
-    if (!imageFile) {
-      toast.error("Please select an image to upload!");
-      return;
-    }
+        const snapshot = await uploadBytes(storageRef, imageFile); // Upload the image file
+        const downloadURL = await getDownloadURL(snapshot.ref); // Get the download URL
 
-    try {
-      // step 1
-      const uniqueFileName = `${Date.now()}_${imageFile.name}`;
-      const storageRef = ref(storage, `images/${uniqueFileName}`);
+        // Step 2: Add the download URL to product data
+        const productData = {
+          ...data,
+          image: downloadURL // Save the Firebase Storage image URL to the product data
+        };
 
-      const snapshot = await uploadBytes(storageRef, imageFile); // Upload the image file
-      const downloadURL = await getDownloadURL(snapshot.ref); // Get the download URL
+        // Step 3: Dispatch the action to add the product
+        const result = await dispatch(addProducts(productData));
+        if (result.status) {
+          navigate('/admin');
+          toast.success("Product added successfully!");
+        } else {
+          toast.error("Error while adding product!");
+        }
 
-      // Step 2: Add the download URL to product data
-      const productData = {
-        ...data,
-        image: downloadURL // Save the Firebase Storage image URL to the product data
-      };
-
-      // Step 3: Dispatch the action to add the product
-      const result = await dispatch(addProducts(productData));
-      if (result.status) {
-        navigate('/admin');
-        toast.success("Product added successfully!");
-      } else {
-        toast.error("Error while adding product!");
+      } catch (error) {
+        toast.error("Failed to upload image!");
+        console.error("Error uploading image:", error);
       }
-
-    } catch (error) {
-      toast.error("Failed to upload image!");
-      console.error("Error uploading image:", error);
     }
-    // const result = await dispatch(addProducts(data));
-
   };
 
 
@@ -89,156 +158,232 @@ function Addproduct() {
     <>
       <div className="container-addproduct">
         <h1 className='addproduct-title'>Add Products</h1>
-        <form className='addproduct-form' onSubmit={handleSubmit}>
-          <div className='add-admin-prd-rww'>
-            <select
-              name='category'
-              className='addproduct-input-drp'
-              value={data.category}
-              onChange={handleChange}
-              required
-            >
-              <option value='' disabled>Select Category</option>
-              <option value="men's clothing">Men's Clothing</option>
-              <option value="women's clothing">Women's Clothing</option>
-              <option value="covers">Mobile Cover</option>
+        <form className='' onSubmit={handleSubmit}>
+          <div className='addproduct-form'>
 
-            </select>
+            <div className='frm-leftdiv'>
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <select
+                    name='category'
+                    className='addproduct-input-drp'
+                    value={data.category}
+                    onChange={handleChange}
+                  >
+                    <option value='' disabled>Select Category</option>
+                    <option value="men's clothing">Men's Clothing</option>
+                    <option value="women's clothing">Women's Clothing</option>
+                    <option value="covers">Mobile Cover</option>
 
-            {/* Image Upload Div */}
-            <div className="image-upload-wrapper">
-              <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                onChange={handleFileChange}
-                style={{ display: 'none' }} // Hide the actual file input
-              />
-              <div
-                className="upload-box"
-                onClick={() => document.getElementById('imageInput').click()} // Trigger file input on div click
-              >
-                {previewImage ? (
-                  <img src={previewImage} alt="Preview" className="preview-image" />
-                ) : (
-                  <span className="upload-text">Upload Image</span>
-                )}
+                  </select>
+                  <div>
+                    {errors.category && <span className="error">{errors.category}</span>}
+                  </div>
+                </div>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='title'
+                    type="text"
+                    className='addproduct-input'
+                    id="title"
+                    placeholder="enter title"
+                    value={data.title}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.title && <span className="error">{errors.title}</span>}
+                  </div>
+                </div>
+              </div>
+
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='size'
+                    type="text"
+                    className='addproduct-input'
+                    id="author"
+                    placeholder="enter size"
+                    value={data.size}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.size && <span className="error">{errors.size}</span>}
+                  </div>
+                </div>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='brand_namez'
+                    type="text"
+                    className='addproduct-input'
+                    id="author"
+                    placeholder="enter brand_namez"
+                    value={data.brand_namez}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.brand_namez && <span className="error">{errors.brand_namez}</span>}
+                  </div>
+                </div>
+              </div>
+
+
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='plp'
+                    type="text"
+                    className='addproduct-input'
+                    id="title"
+                    placeholder="enter plp "
+                    value={data.plp}
+                    onChange={handleChange}
+
+                  />
+
+                  <div>
+
+                    {errors.plp && <span className="error">{errors.plp}</span>}
+                  </div>
+                </div>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='price'
+                    type="text"
+                    className='addproduct-input'
+                    id="image"
+                    placeholder=" enter price"
+                    value={data.price}
+                    onChange={handleChange}
+
+                  />
+                  <div>
+
+                    {errors.price && <span className="error">{errors.price}</span>}
+                  </div>
+                </div>
+              </div>
+
+
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='actualPriceText'
+                    type="text"
+                    className='addproduct-input'
+                    id="image"
+                    placeholder="enter actualPriceText"
+                    value={data.actualPriceText}
+                    onChange={handleChange}
+                  />
+                  <div>
+
+                    {errors.actualPriceText && <span className="error">{errors.actualPriceText}</span>}
+                  </div>
+                </div>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='discount_price_box'
+                    type="text"
+                    className='addproduct-input'
+                    id="image"
+                    placeholder="enter discount_price_box"
+                    value={data.discount_price_box}
+                    onChange={handleChange}
+
+                  />
+
+                  <div>
+
+                    {errors.discount_price_box && <span className="error">{errors.discount_price_box}</span>}
+                  </div>
+                </div>
+              </div>
+
+
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='discountedPriceText'
+                    type="text"
+                    className='addproduct-input'
+                    id="image"
+                    placeholder="enter discountedPriceText"
+                    value={data.discountedPriceText}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.actualPriceText && <span className="error">{errors.actualPriceText}</span>}
+                  </div>
+                </div>
+                <div className='addprdct-admin-label'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='filtercategory'
+                    type="text"
+                    className='addproduct-input'
+                    id="image"
+                    placeholder="enter filtercategory"
+                    value={data.filtercategory}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.filtercategory && <span className="error">{errors.filtercategory}</span>}
+                  </div>
+                </div>
+              </div>
+
+
+              <div className='add-admin-prd-rww'>
+                <div className='addprdct-admin-label-des'>
+                  <label>Enter Title</label><br />
+                  <input
+                    name='description'
+                    type="text"
+                    className='addproduct-input'
+                    id="author"
+                    placeholder="enter description"
+                    value={data.description}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {errors.description && <span className="error">{errors.description}</span>}
+                  </div>
+                </div>
               </div>
             </div>
 
-          </div>
-
-
-          <div className='add-admin-prd-rww'>
-            <input
-              name='title'
-              type="text"
-              className='addproduct-input'
-              id="title"
-              placeholder="enter title"
-              value={data.title}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name='brand_namez'
-              type="text"
-              className='addproduct-input'
-              id="author"
-              placeholder="enter brand_namez"
-              value={data.brand_namez}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='add-admin-prd-rww'>
-            <input
-              name='plp'
-              type="text"
-              className='addproduct-input'
-              id="title"
-              placeholder="enter plp "
-              value={data.plp}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name='price'
-              type="text"
-              className='addproduct-input'
-              id="image"
-              placeholder=" enter price"
-              value={data.price}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='add-admin-prd-rww'>
-            <input
-              name='actualPriceText'
-              type="text"
-              className='addproduct-input'
-              id="image"
-              placeholder="enter actualPriceText"
-              value={data.actualPriceText}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name='discount_price_box'
-              type="text"
-              className='addproduct-input'
-              id="image"
-              placeholder="enter discount_price_box"
-              value={data.discount_price_box}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='add-admin-prd-rww'>
-            <input
-              name='discountedPriceText'
-              type="text"
-              className='addproduct-input'
-              id="image"
-              placeholder="enter discountedPriceText"
-              value={data.discountedPriceText}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name='description'
-              type="text"
-              className='addproduct-input'
-              id="author"
-              placeholder="enter description"
-              value={data.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className='add-admin-prd-rww'>
-            <input
-              name='filtercategory'
-              type="text"
-              className='addproduct-input'
-              id="image"
-              placeholder="enter filtercategory"
-              value={data.filtercategory}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name='size'
-              type="text"
-              className='addproduct-input'
-              id="author"
-              placeholder="enter size"
-              value={data.size}
-              onChange={handleChange}
-              required
-            />
+            <div className='frm-rightdiv'>
+              <div className="image-upload-wrapper">
+                <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+                <div
+                  className="upload-box"
+                  onClick={() => document.getElementById('imageInput').click()}
+                >
+                  {previewImage ? (
+                    <img src={previewImage} alt="Preview" className="preview-image" />
+                  ) : (
+                    <span className="upload-text">Upload Image</span>
+                  )}
+                </div>
+                {errors.image && <span className="error">{errors.image}</span>}
+              </div>
+            </div>
           </div>
           <button className='addproduct-button'>Submit</button>
         </form>

@@ -58,7 +58,6 @@ function Signup() {
         e.preventDefault();
         if (validateForm()) {
             const response = await dispatch(signUp(formData))
-            console.log("btn",response)
             if (response.status) {
                 setFormData({ username: '', email: '', password: '' })
                 navigate('/login')

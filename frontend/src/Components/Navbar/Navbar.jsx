@@ -27,7 +27,9 @@ function Navbar() {
       <div className='navbar-screen'>
         <div className='navbar-wrapper'>
           <div className='header-exclusive'>
-            <p>Topshop</p>
+          <Link to='/'>
+          <span className='navbar-head-homcnt'>ShopFusion</span>
+            </Link>
           </div>
           <div className='header-dsp-hme'>
             <Link to='/'>
@@ -44,7 +46,7 @@ function Navbar() {
         <Search/>
             <div className='navbar-cart'>
               <Link to='/orders'>
-                <span className='header-registr-yr'>Your <br />Orders</span>
+                <span className='header-registr-yr'>Your <br/>Orders</span>
               </Link>
               <Link to='/cart' >
                 <div className='cart-counter'>
@@ -58,10 +60,10 @@ function Navbar() {
               <Profile />
               <div className='header-login-register'>
                 <Link to='/signup'>
-                  <span className='header-registr'>Register/</span>
+                  <span className='header-registr'>Register /</span>
                 </Link>
                 <Link to='/login'>
-                  <span className='header-registr'>Login</span>
+                  <span className='header-registr'>Sign In</span>
                 </Link>
 
               </div>
@@ -76,7 +78,7 @@ function Navbar() {
             <RxHamburgerMenu />
           </div>
           <div className='navbar-hamburger-topshop'>
-            <span>Top Shop</span>
+            <span>ShopFusion</span>
           </div>
 
 
@@ -85,7 +87,7 @@ function Navbar() {
 
         <div class="offcanvas offcanvas-start  hamburger-offcanvas-wid" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
           <div id='offcanvas-header-hambopen' class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Top Shop</h5>
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ShopFusion</h5>
             <button type="button" class="btn-close admin-closebtn-canvas" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">

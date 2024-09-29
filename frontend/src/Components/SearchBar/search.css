@@ -1,12 +1,12 @@
 .your-events-searchstyle {
     display: flex;
     flex-direction: row;
-    width: 300px;
+    width: 385px;
     background: #f5f5f5;
     border: 1px solid #f3f3f3;
-    border-radius: 20px;
+    border-radius: 6px;
     align-items: center;
-    padding: 10px 16px;
+    padding: 8px 14px;
 }
 .span-search-header{
     width: 100%;

@@ -1,7 +1,10 @@
 .cart-cnt{
-    background-color: black;
+    background-color: #ff5757;
     border-radius: 50%;
     text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
     height: 22px;
     color: #fff;
     width: 22px;

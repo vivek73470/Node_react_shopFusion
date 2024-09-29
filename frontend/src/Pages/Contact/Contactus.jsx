@@ -18,6 +18,7 @@ function Contactus() {
     message: ""
   }
 const[formData,setFormData]= useState(initState);
+const [errors, setErrors] = useState({ name: '', email: '', phone: '',message:'' });
 
 const handleChange = (e) =>{
   const{name,value}=e.target;
@@ -26,12 +27,38 @@ const handleChange = (e) =>{
     [name]:value
     
   }));
-
-
+  setErrors({
+    ...errors,
+    [e.target.name]:''
+  })
 }
+
+const validateForm = () => {
+  let valid = true;
+  const newErrors = {};
+  if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+      valid = false;
+  }
+  if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      valid = false;
+  }
+  if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+      valid = false;
+  }
+  if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+      valid = false;
+  }
+  setErrors(newErrors);
+  return valid;
+};
 
 const handleSubmit =async(e)=>{
   e.preventDefault();
+  if(validateForm()){
  const res = await dispatch(Nodemailer(formData))
  if(res.status){
   setFormData(initState)
@@ -39,6 +66,7 @@ toast.success(res.message || 'Mailed Successfully')
  }else{
 toast.error(res.message || 'Error while sending mail')
  }
+}
  
 }
   return (
@@ -59,8 +87,9 @@ toast.error(res.message || 'Error while sending mail')
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              required
+             
                />
+          {errors.name && <span className="error">{errors.name}</span>}
           </div>
           <div className="form-group">
           
@@ -71,8 +100,9 @@ toast.error(res.message || 'Error while sending mail')
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              required
+             
                />
+          {errors.email && <span className="error">{errors.email}</span>}
           </div>
           <div className="form-group">
           
@@ -83,8 +113,9 @@ toast.error(res.message || 'Error while sending mail')
               placeholder="Your Phone Number"
               value={formData.phone}
               onChange={handleChange}
-              required
+             
               />
+          {errors.phone && <span className="error">{errors.phone}</span>}
           </div>
           <div className="form-group">
            
@@ -94,9 +125,10 @@ toast.error(res.message || 'Error while sending mail')
               placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              required
+            
               >
               </textarea>
+              {errors.message && <span className="error">{errors.message}</span>}
           </div>
           <input type="submit" className='contact-bnt' value="Submit"/>
         </form>
