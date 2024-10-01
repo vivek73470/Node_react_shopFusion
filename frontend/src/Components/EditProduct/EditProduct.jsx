@@ -200,7 +200,7 @@ function EditProduct() {
               <div className='frm-leftdiv'>
                 <div className='add-admin-prd-rww'>
                   <div className='addprdct-admin-label'>
-                    <label>Enter Title</label><br />
+                    <label>Select Category</label><br />
                     <select
                       name='category'
                       className='addproduct-input-drp'
@@ -208,9 +208,9 @@ function EditProduct() {
                       onChange={handleChange}
                     >
                       <option value='' disabled>Select Category</option>
-                      <option value="men's clothing">Men's Clothing</option>
-                      <option value="women's clothing">Women's Clothing</option>
-                      <option value="covers">Mobile Cover</option>
+                      <option value="Boys">Boys</option>
+                    <option value="Kids">Kids</option>
+                    <option value="Girls">Girls</option>
   
                     </select>
                     <div>
