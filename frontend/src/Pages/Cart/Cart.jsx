@@ -79,12 +79,14 @@ function CartItem({ _id, title, image, description, price,filtercategory, remove
               <img src={image} alt="" />
             </div>
             <div className='cartitm-bdr'>
-              <h2>{brand_namez}</h2>
-              <h2>{title}-{filtercategory}</h2>
-              <p>
+              <h2 className='brnad-titl-crtor' >{brand_namez}</h2>
+              <h2 className='abt-crt-h2orig'>{title}-{filtercategory}</h2>
+              <p className='cart-desript-orig'>
                 {description}
               </p>
-              <p className='cart-add-price'>रु.{price}</p>
+              <div style={{ paddingBottom: '25px',textAlign:'left' }}>
+              <span className='cart-add-price'>रु.{price}</span>
+              </div>
               <button onClick={() => removeProduct(_id)} className='rmv-btn'>
                 <MdDelete />   Remove  </button>
             </div>

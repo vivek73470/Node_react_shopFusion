@@ -21,26 +21,22 @@ function Checkout({ cart, checkoutHandler }) {
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 style={{fontWeight:'600'}} class="modal-title fs-5" id="staticBackdropLabel">All Orders</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body max-hgt-modalbdy">
                                 <div className='parent-chck-btn'>
                                     <h2 className='confirm-prch-ctr'>Confirm Purchase</h2>
                                     <div className='checkout-inside-design'>
                                         {cart.map((product) =>
                                             <div className='checkout-max-ovr' key={product._id}>
                                                 <div className='checkout-imagels'>  <img src={product.image} alt="" /></div>
-                                                <p>{product.title}</p>
+                                                <p className='checkout-ttl-design'>{product.title}</p>
                                             </div>
                                         )}
                                     </div>
                                     <button className='check-cnfm-ordr' data-bs-dismiss="modal" onClick={handleConfirmOrders}>Confirm Orders</button>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>

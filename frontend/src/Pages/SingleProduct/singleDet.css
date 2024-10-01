@@ -49,8 +49,8 @@
     margin-bottom: 0px;
     font-size: 15px;
     text-align: left;
-    color: rgb(79, 83, 98);
-    padding-top: 6px;
+    color: #4f5362;
+    padding-top: 1px;
 }
 
 .single-product-sizeflex {
@@ -62,7 +62,7 @@
 .single-product-actdiscount {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     padding-top: 8px;
 }
 
@@ -105,7 +105,7 @@
     cursor: pointer;
     border: 1px solid grey;
     padding: 11px;
-    background: rgba(0, 0, 0, 0.64);
+    background: #5c5c5c;
     border-radius: 6px;
 }
 
@@ -130,6 +130,7 @@
     color: rgba(0, 0, 0, 0.48);
 }
 .single-product-1st>p{
+color: #fff;
     margin-bottom: 0px;
     font-weight: 650;
 }
@@ -159,7 +160,7 @@
 }
 
 .single-product-garment {
-    padding-bottom: 15px;
+    padding: 15px 0px;
     margin-bottom: 0px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.48);
@@ -242,7 +243,12 @@ border: 1px solid #000000;
     padding-top: 8px;
     font-weight: 700;
 }
-
+.sixe-stl-cart{
+    padding: 8px;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 8px;
+}
 
 @media screen and (max-width:1300px){
     .prdct-size-mobile img {

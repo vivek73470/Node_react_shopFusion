@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import './singleDet.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
@@ -12,7 +12,7 @@ function SingleProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(store => store.ProductReducer.CurrentProduct)
-  console.log("sing",currentProduct)
+  console.log("sing", currentProduct)
 
 
 
@@ -26,14 +26,14 @@ function SingleProduct() {
   //  This check ensures that the action is dispatched only if there is a valid product to add to the cart.
   const addToCartHandler = async () => {
     if (currentProduct) {
-        const result = await dispatch(addProductCart(currentProduct)); 
-        if (result.status) {
-            toast.success("Added to cart Successfully!");
-        } else {
-            toast.error(result.message || 'An error occurred');
-        }
+      const result = await dispatch(addProductCart(currentProduct));
+      if (result.status) {
+        toast.success("Added to cart Successfully!");
+      } else {
+        toast.error(result.message || 'An error occurred');
+      }
     }
-}
+  }
 
 
   return (
@@ -51,7 +51,7 @@ function SingleProduct() {
               <p className='single-product-discount'>रु.{currentProduct.discountedPriceText}</p>
               <p className='single-product-actual'>{currentProduct.actualPriceText}रु.</p>
               <div className='single-product-off'>
-                <p>65</p>
+                <p>{currentProduct.discount_price_box}</p>
                 <p> %OFF</p>
               </div>
             </div>
@@ -62,7 +62,7 @@ function SingleProduct() {
             </div>
             <div className='single-page-details'>
               <div className='single-product-1st'>
-                <p>DESIGN OF THE DAY</p>
+                <p>{currentProduct.plp}</p>
               </div>
               <div className='single-product-2nd'>
                 <p>DESIGN OF THE DAY</p>
@@ -71,24 +71,31 @@ function SingleProduct() {
             </div>
             <div>
               <p className='single-page-border'></p>
-              <p className='single-page-tribe'>TriBe members get an extra discount of ₹40 and FREE shipping.</p>
+              <p className='single-page-tribe'>TriBe members get an extra discount of ₹{currentProduct.discount_price_box} and FREE shipping.</p>
               <p className='single-page-border'></p>
             </div>
             <div>
               <p className='single-product-select'>Size</p>
-              {currentProduct.size}
+              <span className='sixe-stl-cart'>{currentProduct.size}</span>
             </div>
             <div className='single-product-sizeflex'>
             </div>
             <div>
-              <p className='single-product-garment'>Garment:Chest (in Inch):38.0 | Front Length (in Inch):27.25 | Sleeve Length (in Inch):8.0</p>
+              <p className='single-product-garment'>{currentProduct?.description?.slice(0, 120)}</p>
             </div>
             <div className='single-product-detail-box'>
               <p className='single-product-datail-head' >Product Details</p>
               <div>
-                <p className='single-product-brand'>Brand:Burberry</p>
-                <p className='single-product-brand'>Product Name: Men's White "The Ryuk" Graphic Printed T-shirt</p>
-                <p className='single-product-brand'>Product Type: Full Sleeve T-shirt</p>
+                <p className='single-product-brand'>
+                  <span style={{ fontWeight: '600' }}>Brand:</span> {currentProduct.brand_namez}
+                </p>
+                <p className='single-product-brand'>
+                  <span style={{ fontWeight: '600' }}>Product Name:</span> {currentProduct.title} {currentProduct.filtercategory}
+                </p>
+                <p className='single-product-brand'>
+                  <span style={{ fontWeight: '600' }}>Product Type:</span> Full Sleeve T-shirt
+                </p>
+
               </div>
 
             </div>

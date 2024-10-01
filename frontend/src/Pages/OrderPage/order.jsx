@@ -9,21 +9,21 @@ import { toast } from 'react-toastify';
 function Order() {
     const dispatch = useDispatch();
     const orders = useSelector((store) => store.ProductReducer.orders);
-  
+
 
 
     useEffect(() => {
         dispatch(fetchOrder());
     }, [dispatch]);
 
-    const removeOrder = async(id) => {
-       const result = await dispatch(deleteOrderProducts(id))
-       if(result.status){
-        toast.success(result.message || 'order cancel successfully');
+    const removeOrder = async (id) => {
+        const result = await dispatch(deleteOrderProducts(id))
+        if (result.status) {
+            toast.success(result.message || 'order cancel successfully');
 
-       }else{
-        toast.error(result.message || 'Error while cancel order');
-       }
+        } else {
+            toast.error(result.message || 'Error while cancel order');
+        }
     }
 
     return (
@@ -43,10 +43,12 @@ function Order() {
                                                     <img src={elem.image} alt="" />
                                                 </div>
                                                 <div className='cartitm-bdr'>
-                                                    <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.brand_namez}</h2>
-                                                    <h2 style={{ textAlign: 'center', padding: '4px' }}>{elem.title} {elem.filtercategory}</h2>
-                                                    <p className='order-description'>{elem.description}</p>
-                                                    <p className='cart-add-price-order'>रु.{elem.price}</p>
+                                                    <h2 className='brnad-titl-crtor' >{elem.brand_namez}</h2>
+                                                    <h2 className='abt-crt-h2orig'>{elem.title}-{elem.filtercategory}</h2>
+                                                    <p className='cart-desript-orig'>{elem.description}</p>
+                                                    <div style={{ paddingBottom: '25px', textAlign: 'left' }}>
+                                                        <span className='cart-add-price'>रु.{elem.price}</span>
+                                                    </div>
                                                     <button onClick={() => removeOrder(elem._id)} className='rmv-btn'>Cancel Order  </button>
                                                 </div>
 

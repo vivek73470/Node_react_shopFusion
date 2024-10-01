@@ -8,10 +8,38 @@
 }
 .cartitm-bdr{
     width: 335px;
+    padding-left: 10px;
     height: auto;
+    position: relative;
 }
-.cartitm-bdr>h2{
-    font-size: 23px;
+.brnad-titl-crtor{
+    text-align: center;
+    font-size: 16px;
+    color:#212529 ;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.abt-crt-h2orig{
+    text-align: -webkit-auto;
+    font-size: 15px;
+    color:#212529 ;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-bottom: 3px;
+}
+.cart-desript-orig{
+    text-align: -webkit-auto;
+    font-size: 15px;
+    color:#212529 ;
+}
+.cart-add-price{
+    background-color: #000000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 4px;
+    padding: 6px 10px;
+   
 }
 .cartitm-bdr-ims{
     width: 335px;
@@ -47,6 +75,12 @@ object-fit: contain;
     gap: 10px;
     border-radius: 9px;
     cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+}
+.rmv-btn:hover{
+    color: #000000;
+    background-color: #fff;
 }
 .cart-brdr{
     padding: 15px 5px 10px 5px;
@@ -55,11 +89,7 @@ object-fit: contain;
     border-radius: 9px;
     
 }
-.cart-add-price{
-    text-align: left;
-    padding-left: 30px;
-    font-weight: 700;
-}
+
 .cart-headinf{
     max-height: 650px;
     overflow-y: scroll;
@@ -68,6 +98,8 @@ object-fit: contain;
 
 }
 .cart-shopping-crt{
+    font-size: 26px;
+    font-weight: 550px;
     padding-top: 50px;
     text-align: center;
 }

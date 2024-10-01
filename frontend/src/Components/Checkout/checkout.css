@@ -39,8 +39,16 @@
     max-width: 320px;
 }
 .confirm-prch-ctr{
-    padding-top: 90px;
-    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+
+}
+.checkout-ttl-design{
+    font-size: 15px;
+    color:#212529 ;
+    font-weight: 600;
+    opacity: 0.8;
+    padding-top: 10px;
 }
 .check-cnfm-ordr{
     margin-top: 40px;
@@ -53,16 +61,18 @@
     font-weight: 550;
     cursor: pointer;
 }
+.check-cnfm-ordr:hover{
+color: #000000;
+background-color: #fff;
+border: 1px solid #000000;
+}
 .parent-chck-btn{
 text-align: center;
 }
-
-@media screen and (max-width:1023px){
-    .confirm-prch-ctr{
-        padding-top: 70px;
-    }
-    
-    }
+.max-hgt-modalbdy{
+    max-height: 700px;
+    overflow-y: scroll;
+}
 
 
 @media screen and (max-width:735px){
@@ -84,9 +94,6 @@ padding-top: 10px;
 .cartitm-bdr {
     width: 300px;
     height: auto;
-}
-.confirm-prch-ctr{
-    padding-top: 30px;
 }
 }
 @media screen and (max-width:440px){
