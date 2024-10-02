@@ -50,7 +50,7 @@ function AdminHeader() {
 
       <div class="offcanvas offcanvas-start  hamburger-offcanvas-wid" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div id='admin-offcanvas-header-hambopen' class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Topshop</h5>
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ShopFusion</h5>
           <button type="button" class="btn-close admin-closebtn-canvas" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">

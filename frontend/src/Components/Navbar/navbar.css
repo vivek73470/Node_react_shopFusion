@@ -116,7 +116,7 @@ a{
     box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f;
 }
 .navbar-hamb-offcanvas{
-    font-size: 45px;
+    font-size: 42px;
     cursor: pointer;
   }
   .navbar-hamburger-topshop>span{
@@ -125,8 +125,9 @@ a{
   }
 
 #offcanvas-header-hambopen{
+    border: 1px solid #f0f0f0 ;
     background-color: #fff;
-    box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f;
+    /* box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f; */
 }
 .offcanvas-title{
     font-weight: 650;
@@ -140,13 +141,13 @@ a{
     display: inline-block;
     /* text-decoration: none !important; */
     color: black;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer !important;
     transition: transform 0.3s ease, font-size 0.3s ease;
 }
 .offcanvas-body-wrapper{
-    padding: 10px 35px 35px 35px;
+    padding: 5px 0px;
 }
 .navbar-head-homcnt-hamb:hover {
     text-decoration: underline !important;
@@ -157,7 +158,7 @@ a{
 }
   /* MEDIA QUERY */
 
-  @media screen and (max-width:1250px){
+  @media screen and (max-width:1422px){
     .navbar-wrapper {
         padding: 20px 20px 20px 20px;
   }
@@ -196,14 +197,10 @@ a{
         padding: 5px 30px 5px 30px;
 }
 .navbar-hamb-offcanvas {
-    font-size: 35px;
+    font-size: 32px;
 }
 .navbar-hamburger-topshop>span {
     font-size: 23px;
-}
-.offcanvas-body-wrapper{
-    display: flex;
-    justify-content: center;
 }
 .hamburger-offcanvas-wid{
     width: 70% !important;

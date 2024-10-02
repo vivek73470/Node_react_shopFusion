@@ -60,10 +60,10 @@ function Navbar() {
               <Profile />
               <div className='header-login-register'>
                 <Link to='/signup'>
-                  <span className='header-registr'>Register /</span>
+                  <span className='header-registr'>SignUp /</span>
                 </Link>
                 <Link to='/login'>
-                  <span className='header-registr'>Sign In</span>
+                  <span className='header-registr'>In</span>
                 </Link>
 
               </div>

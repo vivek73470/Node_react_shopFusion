@@ -59,7 +59,7 @@ function Sidebar({ Children }) {
       {/* If isOpen is true, the width is set to "300px"; otherwise, if isOpen is false, the width is set to "105px" */}
         <div style={{ width: isOpen ? "300px" : "105px" }} className='sidebar-screen-wrapper'>
           <div className='top-section'>
-            <Link to='/' style={{ display: isOpen ? "block" : "none" }} className='logo'>ShopFusion</Link>
+          <h1 style={{ display: isOpen ? "block" : "none" }} className='logo'><span><Link to = '/'>ShopFusion</Link></span></h1>
             <div style={{ marginLeft: isOpen ? "105px" : "0px" }} className='bars'>
               <FaBars onClick={toggle} />
             </div>

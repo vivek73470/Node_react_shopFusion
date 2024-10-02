@@ -23,10 +23,7 @@ width: 100%;
 justify-content: space-between;
 align-items: center;
 }
-.adminoffcanvas-body-wrapper{
-  display: flex;
-  justify-content: center;
-}
+
 .admin-offcanvas-body-homecnt {
   display: flex;
   flex-direction: column;
@@ -36,14 +33,14 @@ align-items: center;
   display: inline-block;
   text-decoration: none !important;
   color: black;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer !important;
   transition: transform 0.3s ease, font-size 0.3s ease;
 }
 .admin-offcanvas-body-linkk{
   display: flex;
-  column-gap: 20px;
+  column-gap: 10px;
   align-items: center;
 }
 .admin-offcanvas-logout{
@@ -62,7 +59,8 @@ align-items: center;
   display: flex;
   align-items: center;
   background-color: #fff;
-  box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f;
+  border-bottom: 1px solid #f0f0f0;
+  /* box-shadow: 0px 4.934579372406006px 19.738317489624023px 0px #1f1b2d1f; */
 }
 
 @media screen and (max-width:940px){

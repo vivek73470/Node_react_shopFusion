@@ -39,7 +39,6 @@ function AllRoutes() {
         <Route path='/cart-counter' element={<CartCounter />} />
         <Route path='/cartproducts/:id' element={<SingleProduct />} />
         <Route path='/check' element={<Checkout />} />
-        <Route path='/orders' element={<Order />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<Forgot/>} />
         <Route path='/new-password' element={<Password/>} />
@@ -47,6 +46,13 @@ function AllRoutes() {
         <Route path='/footer' element={<Footer />} />
         <Route path='/contact-us' element={<Contactus />} />
         <Route path='*' element={<NotFound />} />
+
+        {/* order page authenticated */}
+        <Route path='/orders' element={
+          <AuthWrapper>
+          <Order/>
+        </AuthWrapper>}
+        />
 
         {/* Admin Routes */}
         <Route path='/admin' element={
