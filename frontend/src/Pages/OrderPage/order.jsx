@@ -39,10 +39,10 @@ function Order() {
                                     <div key={index}>
                                         <div className=''>
                                             <div className='orders-degn-flx '>
-                                                <div className='cartitm-bdr-ims'>
+                                                <div className='cartitm-bdrord-ims'>
                                                     <img src={elem.image} alt="" />
                                                 </div>
-                                                <div className='cartitm-bdr'>
+                                                <div className='cartitm-bdrord'>
                                                     <h2 className='brnad-titl-crtor' >{elem.brand_namez}</h2>
                                                     <h2 className='abt-crt-h2orig'>{elem.title}-{elem.filtercategory}</h2>
                                                     <p className='cart-desript-orig'>{elem.description}</p>

@@ -168,13 +168,6 @@
 
 
 @media screen and (max-width:1023px) {
-    /* .product-listing {
-        margin: auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 26px;
-        row-gap: 30px;
-    } */
 
     .product-screen-wrapper {
         padding: 2px 20px;
@@ -203,10 +196,6 @@
 
 
 @media screen and (max-width:500px) {
-    /* .product-listing {
-        grid-template-columns: repeat(1, 1fr);
-
-    } */
 
     .productlist-design {
         max-width: 300px;
@@ -226,4 +215,10 @@
     .product-screen {
         margin-top: 60px;
     }
+    
+.product-filter {
+max-height: 350px;
+overflow-y: scroll;
+
+}
 }

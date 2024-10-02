@@ -76,9 +76,6 @@ text-align: center;
 
 
 @media screen and (max-width:735px){
-    .cart-brdr {
-      display: grid;
-    }
     .checkout-btn {
         max-width: 350px;
     }
@@ -90,10 +87,6 @@ text-align: center;
 @media screen and (max-width:550px){
 .cart-shopping-crt{
 padding-top: 10px;
-}
-.cartitm-bdr {
-    width: 300px;
-    height: auto;
 }
 }
 @media screen and (max-width:440px){

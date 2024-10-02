@@ -18,10 +18,11 @@ height: 100vh;
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 30px 30px;
+    padding: 30px 25px;
 }
 .logo{
-    font-size: 30px;
+    font-size: 22px;
+    font-weight: 700;
 }
 .bars{
     display: flex;
