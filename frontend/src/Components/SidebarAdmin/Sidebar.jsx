@@ -15,7 +15,6 @@ function Sidebar({ Children }) {
 
   const [isOpen, setIsOpen] = useState(true);
 
-  // The toggle function is defined to toggle the value of isOpen between true and false when called.
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
 
@@ -46,7 +45,8 @@ function Sidebar({ Children }) {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId');
     navigate('/login')
     toast.success("Logout Successfully!");
   }

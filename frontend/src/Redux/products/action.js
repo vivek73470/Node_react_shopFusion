@@ -40,12 +40,12 @@ const fetchFilterFailure = () => {
 const fetchFilterData = (categories) => async (dispatch) => {
     dispatch(fetchFilterRequest());
     try {
-        const { category, brand_namez,size,filtercategory } = categories;
+        const { category, brand_namez, size, filtercategory } = categories;
 
         const categoryParams = category.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
 
         const sizeParams = size.map(sizecat => `size=${encodeURIComponent(sizecat)}`).join('&');
-        
+
         const brandParams = brand_namez.map(brand => `brand_namez=${encodeURIComponent(brand)}`).join('&');
 
         const filtercategoryParams = filtercategory.map(filtercat => `filtercategory=${encodeURIComponent(filtercat)}`).join('&');
@@ -53,7 +53,7 @@ const fetchFilterData = (categories) => async (dispatch) => {
         const queryString = `${categoryParams}&${brandParams}&${sizeParams}&${filtercategoryParams}`;
 
         const response = await axios.get(`${BASE_URL}/products/filter-products?${queryString}`);
-        
+
         dispatch(fetchFilterSuccess(response.data.data));
     } catch (error) {
         dispatch(fetchFilterFailure(error.message || 'Something went wrong'));
@@ -245,9 +245,18 @@ const addOrderFailure = (payload) => {
     }
 }
 const addOrder = (payload) => async (dispatch) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        dispatch(addOrderFailure({ message: "Authentication required" }));
+        return 401;
+    }
     dispatch(addOrderRequest());
     try {
-        const response = await axios.post(`${BASE_URL}/orders/add`, payload);
+        const response = await axios.post(`${BASE_URL}/orders/add`, payload,{
+            headers:{
+                'Authorization': token
+            }
+        });
         dispatch(addOrderSuccess(response.data.data));
         dispatch(emptyCart(payload));
         return response.status;
@@ -301,13 +310,21 @@ const fetchOrderFailure = () => {
 
     }
 }
-const fetchOrder = () => (dispatch) => {
+const fetchOrder = () => async (dispatch) => {
+    const token = localStorage.getItem('token');
     dispatch(fetchOrderRequest());
-    axios.get(`${BASE_URL}/orders`)
-        .then(r => dispatch(fetchOrderSuccess(r.data.data)))
-        .catch(e => dispatch(fetchOrderFailure(e.data)))
+    try {
+        const response = await axios.get(`${BASE_URL}/orders`, {
+            headers: {
+                'Authorization': token 
+            }
+        });
+        dispatch(fetchOrderSuccess(response.data.data));
+    } catch (error) {
+        dispatch(fetchOrderFailure(error.response ? error.response.data : error.message));
+    }
+};
 
-}
 
 
 
@@ -331,9 +348,14 @@ const deleteOrderFailure = () => {
     }
 }
 const deleteOrderProducts = (id) => async (dispatch) => {
+    const token = localStorage.getItem('token');
     dispatch(deleteOrderRequest())
     try {
-        const response = await axios.delete(`${BASE_URL}/orders/${id}`);
+        const response = await axios.delete(`${BASE_URL}/orders/${id}`,{
+            headers: {
+                'Authorization': token
+            }
+        });
         if (response.status === 200) {
             dispatch(deleteOrderSuccess(response.data.data));
             dispatch(fetchOrder());

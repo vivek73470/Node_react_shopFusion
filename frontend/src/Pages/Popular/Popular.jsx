@@ -20,7 +20,7 @@ function Popular() {
                         <h1>Popular Categories</h1>
                     </div>
                     <div className='pop-mens'>
-                        <Link to=''>
+                        <Link to='/products'>
                             <div className='pop-mens-wrap'>
                                 <div className='pop-mens-multi'>
                                     <img src={Pop1} alt='' />

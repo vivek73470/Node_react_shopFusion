@@ -12,7 +12,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
-    console.log('cart reducer',payload)
+
     switch (type) {
         case types.START_LOADING:
             return {

@@ -14,10 +14,11 @@ import Search from '../SearchBar/Search';
 function Navbar() {
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem('userId')
+  const token = localStorage.getItem('token')
  
   const handleLogout = () => {
-    localStorage.removeItem('userId'); 
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('userId');
     navigate('/login')
 
    
@@ -26,6 +27,7 @@ function Navbar() {
     <>
       <div className='navbar-screen'>
         <div className='navbar-wrapper'>
+          <div  className='navbar-1stprdcetc'> 
           <div className='header-exclusive'>
           <Link to='/'>
           <span className='navbar-head-homcnt'>ShopFusion</span>
@@ -42,6 +44,8 @@ function Navbar() {
               <span className='navbar-head-homcnt'>Contact</span>
             </Link>
           </div>
+          </div>
+         
           <div className='navbar-cart-parent'>
         <Search/>
             <div className='navbar-cart'>
@@ -113,7 +117,7 @@ function Navbar() {
                   <span className='navbar-head-homcnt-hamb'>Profile</span>
                 </Link>
 
-                {userId ? (
+                {token ? (
                   <span className='navbar-head-homcnt-hamb' onClick={()=>handleLogout()}>Logout</span>
                 ):(
                   <Link to='/login'>

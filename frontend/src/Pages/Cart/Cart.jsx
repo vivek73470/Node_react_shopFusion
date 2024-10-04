@@ -26,6 +26,10 @@ function Cart() {
     try {
         for (let i in cart) {
             const responseStatus = await dispatch(addOrder(cart[i]));
+            if (responseStatus === 401) {
+              toast.error("Please login first to place an order.");
+              return; 
+          }
             if (responseStatus === 200) {
                 toast.success(`Order for ${cart[i].title} added successfully!`);
             } else {

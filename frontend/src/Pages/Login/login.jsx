@@ -21,7 +21,6 @@ function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' })
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({ email: '', password: '' });
-    // errors stores any validation errors related to these fields.
 
 
     const handleChange = (e) => {
@@ -58,9 +57,10 @@ function Login() {
         e.preventDefault();
         if (validateForm()) {
             const response = await dispatch(signIn(formData));
+            console.log("lgn",response)
             if (response.status) {
-                const { _id, token } = response;
-                localStorage.setItem('userId', JSON.stringify({_id, token }));
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('userId', response._id);
                 setFormData({ email: '', password: '' });
                 navigate('/admin');
                 toast.success("Login Successfully!");

@@ -12,9 +12,6 @@ function SingleProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(store => store.ProductReducer.CurrentProduct)
-  console.log("sing", currentProduct)
-
-
 
   useEffect(() => {
     if (id) {

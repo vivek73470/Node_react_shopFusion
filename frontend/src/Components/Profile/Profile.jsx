@@ -5,13 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 function Profile() {
   const [open, setOpen] = useState(false);
-  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
 
 
   const handleLogout = () => {
-    localStorage.removeItem('userId'); 
-  
-
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('userId');
   };
 
   const Menus = [
@@ -19,7 +18,7 @@ function Profile() {
       title: 'Profile',
       path: '/admin/profile',
     },
-    userId && {
+    token && {
       title: 'Logout',
       path: '/',
       onClick: handleLogout 

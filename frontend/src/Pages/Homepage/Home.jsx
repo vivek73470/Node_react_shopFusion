@@ -30,10 +30,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
   const dispatch = useDispatch()
-  // const seller = useSelector((store) => store.ProductReducer.products.slice(0, 6))
+  const seller = useSelector((store) => store.ProductReducer.products.slice(0, 6))
 
   useEffect(() => {
-    dispatch(fetchData()); // Dispatch action to fetch products when component mounts
+    dispatch(fetchData()); 
   }, [dispatch]);
 
 
@@ -138,13 +138,13 @@ function Home() {
               <h2>Best Sellers</h2>
             </div>
             <Link to="/products">
-              {/* <div className='seller-design-data'>
+              <div className='seller-design-data'>
                   {seller.length > 0 && seller.map((elem) =>
                     <div className='best-seller-imgeeq' key={elem.id}>
                       <img src={elem.image} alt='' />
                     </div>
                   )}
-              </div> */}
+              </div>
             </Link>
           </div>
           <CategoryToBag />

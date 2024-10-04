@@ -2,9 +2,9 @@ import React from 'react'
 import {Navigate } from 'react-router-dom'
 
 function AuthWrapper({children}) {
- const userId = localStorage.getItem('userId')
+ const token = localStorage.getItem('token')
 
-    if(!userId){
+    if(!token){
    return <Navigate to='/login' replace={true} />
 }
   return (

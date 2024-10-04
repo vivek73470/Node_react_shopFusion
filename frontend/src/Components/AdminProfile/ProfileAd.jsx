@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProf, fetchUserData } from '../../Redux/auth/action';
-import { json } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function ProfileAd() {
@@ -16,16 +15,13 @@ function ProfileAd() {
     DOB: "",
 
   })
-  const userData = localStorage.getItem('userId');
-  const user_id = JSON.parse(userData)
-  const userId = user_id?._id;
-
+  const token = localStorage.getItem('userId');
 
   useEffect(() => {
-    if (userId) {
-      dispatch(fetchUserData(userId));
+    if (token) {
+      dispatch(fetchUserData(token));
     }
-  }, [dispatch, userId]);
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (profileData) {
@@ -62,7 +58,7 @@ function ProfileAd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await dispatch(UpdateProf(userId, data));
+      const res = await dispatch(UpdateProf(token, data));
       if (res.status) {
         toast.success("Profile updated successfully!");
       } else {

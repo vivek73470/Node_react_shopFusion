@@ -48,7 +48,6 @@ const SignInGoogleRequest = () => {
     }
 }
 const SignInGoogleSuccess = (payload) => {
-    console.log('googl payload', payload)
     return {
         type: SIGNIN_SUCCESS,
         payload
@@ -64,7 +63,7 @@ export const signInGoogle = () => async (dispatch) => {
         dispatch(SignInGoogleRequest());
         const { user } = await signInWithPopup(auth, provider);
         console.log('google', user.displayName)
-        localStorage.setItem('userId', user.email);
+        localStorage.setItem('token', user.email);
         dispatch(SignInGoogleSuccess(user.displayName))
         return { status: true }
     }
@@ -106,7 +105,7 @@ export const signIn = (formData) => async (dispatch) => {
         const users = await res.json();
         if (res.status === 200) {
             dispatch(SignInSuccess({ status: true }));
-            return { status: true, token: users.token, _id: users.user._id };
+            return { status: true, token: users.token, _id: users._id };
         } else {
             return { status: false, message: users.message };
         }
@@ -189,9 +188,14 @@ const SetInFailure = (payload) => {
 
 }
 export const fetchUserData = (userId) => async (dispatch) => {
+    const token = localStorage.getItem('token');
     dispatch(SetInRequest());
     try {
-        const response = await axios.get(`${BASE_URL}/user/${userId}`);
+        const response = await axios.get(`${BASE_URL}/user/${userId}`,{
+            headers: {
+                'Authorization': token 
+            }
+        });
         dispatch(SetInSuccess(response.data.data));
     } catch (err) {
         dispatch(SetInFailure(err));
@@ -218,9 +222,14 @@ const UpdateFailure = () => {
     }
 }
 export const UpdateProf = (id, data) => async (dispatch) => {
+    const token = localStorage.getItem('token');
     dispatch(UpdateRequest());
     try {
-        const res = await axios.put(`${BASE_URL}/user/${id}`, data);
+        const res = await axios.put(`${BASE_URL}/user/${id}`, data,{
+            headers: {
+                'Authorization': token 
+            }
+        });
         if (res.status === 200) {
             dispatch(UpdateSuccess(res.data.data));
             return { status: true }
@@ -288,7 +297,6 @@ const changeFailurePassword = () => {
     }
 }
 export const Changepassword = (id, passwordData) => async (dispatch) => {
-    console.log("id and pas", id, passwordData)
     dispatch(changeRequestPassword());
     try {
         const response = await axios.put(`${BASE_URL}/user/reset-password/${id}`, passwordData);
