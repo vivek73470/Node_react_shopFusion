@@ -24,9 +24,9 @@ cartRouter.get('/',async(req,res)=>{
 // add all cart
 cartRouter.post('/add',async(req,res)=>{
     const { title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText,
-        discount_price_box, image} = req.body;
+        discount_price_box, image,filtercategory,size} = req.body;
         try{
-            const data = new AllCart({title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image}) 
+            const data = new AllCart({title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image,filtercategory,size}) 
             await data.save()
             return res.status(200).send({
                 status: true,

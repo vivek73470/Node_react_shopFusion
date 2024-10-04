@@ -2,6 +2,7 @@ const express = require('express')
 const User = require('../model/RegisterLoginModel/usermodel')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const authenticate = require('../middleware/adminauth.middleware');
 
 const userRouter = express.Router();
 
@@ -45,7 +46,7 @@ userRouter.post('/login', async (req, res) => {
 
         if (result) {
             const token = jwt.sign({ userId: user._id }, 'masai');
-            return res.status(200).json({ status: true, message: "Login successfully", user: { _id: user._id }, token: token });
+            return res.status(200).json({ status: true, message: "Login successfully",  _id: user._id , token: token });
         } else {
             return res.status(401).json({ message: "Wrong credentials" });
         }
@@ -57,7 +58,7 @@ userRouter.post('/login', async (req, res) => {
 })
 
 // single user details
-userRouter.get('/:id', async (req, res) => {
+userRouter.get('/:id',authenticate, async (req, res) => {
     const id = req.params.id;
     try {
         const data = await User.findById(id)
@@ -85,7 +86,7 @@ userRouter.get('/:id', async (req, res) => {
 
 
 //edit  single user details
-userRouter.put('/:id', async (req, res) => {
+userRouter.put('/:id',authenticate, async (req, res) => {
     const payload = req.body;
     const id = req.params.id;
     try {

@@ -1,10 +1,11 @@
 const express = require('express');
+const authenticate = require('../middleware/adminauth.middleware')
 const Allorder = require('../model/order/ordermodel')
 
 const orderRouter = express.Router();
 
 // get all order
-orderRouter.get('/',async(req,res)=>{
+orderRouter.get('/',authenticate, async(req,res)=>{
     try {
         const data = await Allorder.find();
         return res.status(200).send({
@@ -22,11 +23,11 @@ orderRouter.get('/',async(req,res)=>{
 })
 
 // order add
-orderRouter.post('/add',async(req,res)=>{
+orderRouter.post('/add',authenticate,async(req,res)=>{
     const { title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText,
-        discount_price_box, image} = req.body;
+        discount_price_box, image,filtercategory,size} = req.body;
         try{
-            const data = new Allorder({title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image}) 
+            const data = new Allorder({title, price, description, category, plp, brand_namez, discountedPriceText, actualPriceText, discount_price_box, image,filtercategory,size}) 
             await data.save()
             return res.status(200).send({
                 status: true,
@@ -43,8 +44,8 @@ orderRouter.post('/add',async(req,res)=>{
         }
 })
 
-// delete product cart
-orderRouter.delete('/:id',async(req,res)=>{
+// delete order 
+orderRouter.delete('/:id',authenticate, async(req,res)=>{
     const id = req.params.id;
     try{
      await Allorder.findByIdAndDelete({_id: id});

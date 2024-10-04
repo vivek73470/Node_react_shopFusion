@@ -10,7 +10,10 @@ const cartSchema = new mongoose.Schema({
     discountedPriceText: { type: String, default: null },
     actualPriceText: { type: Number, required: true },
     discount_price_box: { type: Number, default: null },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+
+    filtercategory: { type: String, default: null },
+    size: { type: String, default: null },
 
 },{versionKey:false})
 
