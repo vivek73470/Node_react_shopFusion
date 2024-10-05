@@ -6,7 +6,7 @@ const productsRoute = express.Router();
 // filter products
 productsRoute.get('/filter-products', async (req, res) => {
     try {
-        const { category, brand_namez,filtercategory,size } = req.query;
+        const { category, brand_namez,filtercategory,size,keyword } = req.query;
 
         const filter = [];
 
@@ -24,6 +24,15 @@ productsRoute.get('/filter-products', async (req, res) => {
 
         if (size) {
             filter.push({ size: { $in: Array.isArray(size) ? size : [size] } });
+        }
+
+        if (keyword) {
+            filter.push({
+                $or: [
+                    { category: { $regex: keyword, $options: 'i' } },
+                    { filtercategory: { $regex: keyword, $options: 'i' } } 
+                ]
+            });
         }
 
         const query = filter.length ? { $or: filter } : {};
