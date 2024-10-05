@@ -37,10 +37,10 @@ const fetchFilterFailure = () => {
     }
 }
 
-const fetchFilterData = (categories) => async (dispatch) => {
+const fetchFilterData = (categories,keyword = '') => async (dispatch) => {
     dispatch(fetchFilterRequest());
     try {
-        const { category, brand_namez, size, filtercategory } = categories;
+        const { category = [], brand_namez = [], size = [], filtercategory = [] } = categories;
 
         const categoryParams = category.map(cat => `category=${encodeURIComponent(cat)}`).join('&');
 
@@ -50,7 +50,15 @@ const fetchFilterData = (categories) => async (dispatch) => {
 
         const filtercategoryParams = filtercategory.map(filtercat => `filtercategory=${encodeURIComponent(filtercat)}`).join('&');
 
-        const queryString = `${categoryParams}&${brandParams}&${sizeParams}&${filtercategoryParams}`;
+        const keywordParam = keyword ? `keyword=${encodeURIComponent(keyword)}` : '';
+
+        const queryString = [
+            categoryParams,
+            brandParams,
+            sizeParams,
+            filtercategoryParams,
+            keywordParam
+        ].filter(Boolean).join('&');
 
         const response = await axios.get(`${BASE_URL}/products/filter-products?${queryString}`);
 

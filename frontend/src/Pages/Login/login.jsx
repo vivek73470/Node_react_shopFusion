@@ -57,7 +57,6 @@ function Login() {
         e.preventDefault();
         if (validateForm()) {
             const response = await dispatch(signIn(formData));
-            console.log("lgn",response)
             if (response.status) {
                 localStorage.setItem('token', response.token);
                 localStorage.setItem('userId', response._id);
