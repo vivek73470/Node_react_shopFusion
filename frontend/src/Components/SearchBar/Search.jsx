@@ -2,18 +2,25 @@ import React, { useCallback,useState } from 'react';
 import './search.css';
 import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchSearchData, fetchSearchDropdown } from '../../Redux/products/action';
+import {fetchData, fetchSearchData, fetchSearchDropdown } from '../../Redux/products/action';
 import debounce from 'lodash.debounce';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 function Search() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [query, setQuery] = useState('');
+    const [showDropdown, setShowDropdown] = useState(false);
     const dropdownResults  = useSelector((store) => store.ProductReducer.dropdownResults );
 
   const debounceSearch = useCallback(
     debounce((searchQuery) => {
         if (searchQuery) {
             dispatch(fetchSearchDropdown(searchQuery));
+            setShowDropdown(true); 
+        }else{
+            dispatch(fetchData())
         }
     }, 500),
     []
@@ -25,8 +32,12 @@ function Search() {
         debounceSearch(value);
     };
     const handleSelectProduct = (product) => {
+        setQuery(product.filtercategory);
         dispatch(fetchSearchData(product.filtercategory));
-        setQuery(''); 
+        setShowDropdown(false); 
+        if(location.pathname !== '/products')
+            navigate('/products')
+
     };
 
     return (
@@ -42,7 +53,7 @@ function Search() {
                         onChange={handleInputChange}
                     />
                 </span>
-              {query && (
+              {showDropdown && query && (
                     <ul className="search-results">
                         {dropdownResults.length > 0 ? (
                             dropdownResults.map((product) => (

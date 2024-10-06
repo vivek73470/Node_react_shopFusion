@@ -65,7 +65,7 @@ const Filter = () => {
       updatedfiltercategory = updatedfiltercategory.filter(filtercategory => filtercategory !== value);
     }
     setfiltercategory(updatedfiltercategory);
-    // dispatch(fetchFilterData(updatedBrands));
+   
   };
 
   useEffect(() => {
