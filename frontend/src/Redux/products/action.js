@@ -37,7 +37,7 @@ const fetchFilterFailure = () => {
     }
 }
 
-const fetchFilterData = (categories,keyword = '') => async (dispatch) => {
+const fetchFilterData = (categories) => async (dispatch) => {
     dispatch(fetchFilterRequest());
     try {
         const { category = [], brand_namez = [], size = [], filtercategory = [] } = categories;
@@ -50,14 +50,11 @@ const fetchFilterData = (categories,keyword = '') => async (dispatch) => {
 
         const filtercategoryParams = filtercategory.map(filtercat => `filtercategory=${encodeURIComponent(filtercat)}`).join('&');
 
-        const keywordParam = keyword ? `keyword=${encodeURIComponent(keyword)}` : '';
-
         const queryString = [
             categoryParams,
             brandParams,
             sizeParams,
             filtercategoryParams,
-            keywordParam
         ].filter(Boolean).join('&');
 
         const response = await axios.get(`${BASE_URL}/products/filter-products?${queryString}`);
@@ -68,6 +65,72 @@ const fetchFilterData = (categories,keyword = '') => async (dispatch) => {
     }
 };
 
+// Search Dropdown products 
+const fetchDropdownSearchRequest = () => {
+    return {
+        type: types.FETCH_SEARCH_REQUEST,
+
+    }
+}
+const fetchDropdownResultsSuccess = (payload) => {
+    return {
+        type: types.FETCH_SEARCH_DROPDOWN_SUCCESS,
+        payload,
+    }
+}
+const fetchDropdownSearchFailure = () => {
+    return {
+        type: types.FETCH_SEARCH_FAILURE,
+
+    }
+}
+const fetchSearchDropdown = (keyword) => async (dispatch) => {
+    dispatch(fetchDropdownSearchRequest());
+    try {
+        if (!keyword) {
+            throw new Error('Keyword is required for search.');
+        }
+        const response = await axios.get(`${BASE_URL}/products/search-products?keyword=${encodeURIComponent(keyword)}`);
+
+        dispatch(fetchDropdownResultsSuccess(response.data.data));
+    } catch (error) {
+        dispatch(fetchDropdownSearchFailure(error.message || 'Something went wrong'));
+    }
+};
+
+
+// search products
+const fetchSearchRequest = () => {
+    return {
+        type: types.FETCH_SEARCH_REQUEST,
+
+    }
+}
+const fetchSearchSuccess = (payload) => {
+    return {
+        type: types.FETCH_SEARCH_SUCCESS,
+        payload,
+    }
+}
+const fetchSearchFailure = () => {
+    return {
+        type: types.FETCH_SEARCH_FAILURE,
+
+    }
+}
+const fetchSearchData = (keyword) => async (dispatch) => {
+    dispatch(fetchSearchRequest());
+    try {
+        if (!keyword) {
+            throw new Error('Keyword is required for search.');
+        }
+        const response = await axios.get(`${BASE_URL}/products/search-products?keyword=${encodeURIComponent(keyword)}`);
+
+        dispatch(fetchSearchSuccess(response.data.data)); 
+    } catch (error) {
+        dispatch(fetchSearchFailure(error.message || 'Something went wrong'));
+    }
+};
 
 
 
@@ -260,8 +323,8 @@ const addOrder = (payload) => async (dispatch) => {
     }
     dispatch(addOrderRequest());
     try {
-        const response = await axios.post(`${BASE_URL}/orders/add`, payload,{
-            headers:{
+        const response = await axios.post(`${BASE_URL}/orders/add`, payload, {
+            headers: {
                 'Authorization': token
             }
         });
@@ -324,7 +387,7 @@ const fetchOrder = () => async (dispatch) => {
     try {
         const response = await axios.get(`${BASE_URL}/orders`, {
             headers: {
-                'Authorization': token 
+                'Authorization': token
             }
         });
         dispatch(fetchOrderSuccess(response.data.data));
@@ -359,7 +422,7 @@ const deleteOrderProducts = (id) => async (dispatch) => {
     const token = localStorage.getItem('token');
     dispatch(deleteOrderRequest())
     try {
-        const response = await axios.delete(`${BASE_URL}/orders/${id}`,{
+        const response = await axios.delete(`${BASE_URL}/orders/${id}`, {
             headers: {
                 'Authorization': token
             }
@@ -474,5 +537,5 @@ const deleteProducts = (id) => async (dispatch) => {
 
 export {
     fetchData, deleteOrderProducts, editProducts, deleteProducts, emptyCart, fetchOrder, getSingleProduct,
-    addProductCart, fetchCart, deleteProductCart, addOrder, addProducts, fetchFilterData, startLoading, stopLoading
+    addProductCart, fetchCart, deleteProductCart, addOrder, addProducts, fetchFilterData, fetchSearchData,fetchSearchDropdown, fetchSearchSuccess, startLoading, stopLoading
 };

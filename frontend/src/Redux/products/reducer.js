@@ -2,6 +2,7 @@ import * as types from './actionType';
 
 const initialState = {
     products: [],
+    dropdownResults: [],
     error: '',
     CurrentProduct: {},
     loading: false,
@@ -25,8 +26,9 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
+            
         case types.FETCH_DATA_REQUEST:
-            return { 
+            return {
                 ...state,
                 loading: true
             }
@@ -47,26 +49,69 @@ const reducer = (state = initialState, action) => {
             }
 
 
-            case types.FETCH_FILTER_REQUEST:
-                return { 
-                    ...state,
-                    loading: true
-                }
-    
-            case types.FETCH_FILTER_SUCCESS:
-                return {
-                    ...state,
-                    products: payload,
-                    error: '',
-                    loading: false
-                }
-    
-            case types.FETCH_FILTER_FAILURE:
-                return {
-                    ...state,
-                    error: payload,
-                    loading: false
-                }
+        case types.FETCH_FILTER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case types.FETCH_FILTER_SUCCESS:
+            return {
+                ...state,
+                products: payload,
+                error: '',
+                loading: false
+            }
+
+        case types.FETCH_FILTER_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                loading: false
+            }
+
+
+        case types.FETCH_SEARCH_DROPDOWN_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case types.FETCH_SEARCH_DROPDOWN_SUCCESS:
+            return {
+                ...state,
+                dropdownResults: payload,
+                error: '',
+                loading: false
+            }
+        case types.FETCH_SEARCH_DROPDOWN_FAILURE:
+            return {
+                ...state,
+                loading: false
+            }
+
+
+        case types.FETCH_SEARCH_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case types.FETCH_SEARCH_SUCCESS:
+            return {
+                ...state,
+                products: payload,
+                error: '',
+                loading: false
+            }
+
+        case types.FETCH_SEARCH_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                loading: false
+            }
+
 
 
         case types.GET_SINGLE_PRODUCT_REQUEST:
@@ -104,6 +149,8 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
+
+
         case types.EDIT_PRODUCT_FAILURE:
             return {
                 ...state,
@@ -125,6 +172,8 @@ const reducer = (state = initialState, action) => {
                 loading: false
 
             }
+
+
 
         case types.ADD_PRODUCT_CART_FAILURE:
             return {
@@ -153,6 +202,8 @@ const reducer = (state = initialState, action) => {
 
             }
 
+
+
         case types.FETCH_CART_FAILURE:
             return {
                 ...state,
@@ -172,6 +223,8 @@ const reducer = (state = initialState, action) => {
                 error: payload,
                 loading: false,
             }
+
+
 
         case types.FETCH_ORDER_REQUEST:
             return {
@@ -193,6 +246,7 @@ const reducer = (state = initialState, action) => {
                 error: payload,
                 loading: false
             }
+
 
 
         case types.ADD_ORDER_REQUEST:
@@ -237,6 +291,7 @@ const reducer = (state = initialState, action) => {
                 error: payload,
                 loading: false
             }
+
 
         case types.DELETE_ORDER_REQUEST:
             return {
