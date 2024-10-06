@@ -8,7 +8,6 @@ import debounce from 'lodash.debounce';
 function Search() {
     const dispatch = useDispatch();
     const [query, setQuery] = useState('');
-    const products = useSelector((store) => store.ProductReducer.products);
     const dropdownResults  = useSelector((store) => store.ProductReducer.dropdownResults );
 
   const debounceSearch = useCallback(
@@ -43,14 +42,20 @@ function Search() {
                         onChange={handleInputChange}
                     />
                 </span>
-                {query && products && products.length > 0 && (
-                       <ul className="search-results">
-                       {dropdownResults.map((product) => (
-                           <div key={product._id} onClick={() => handleSelectProduct(product)}>
-                               <p>{product.filtercategory}</p>
-                           </div>
-                       ))}
-                   </ul>
+              {query && (
+                    <ul className="search-results">
+                        {dropdownResults.length > 0 ? (
+                            dropdownResults.map((product) => (
+                                <div key={product._id} onClick={() => handleSelectProduct(product)}>
+                                    <p>{product.filtercategory}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="no-results">
+                                <p>No match found</p>
+                            </div>
+                        )}
+                    </ul>
                 )}
 
             </div>
