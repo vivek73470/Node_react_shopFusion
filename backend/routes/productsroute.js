@@ -6,7 +6,7 @@ const productsRoute = express.Router();
 // filter products
 productsRoute.get('/filter-products', async (req, res) => {
     try {
-        const { category, brand_namez,filtercategory,size,keyword } = req.query;
+        const { category, brand_namez,filtercategory,size} = req.query;
 
         const filter = [];
 
@@ -26,15 +26,6 @@ productsRoute.get('/filter-products', async (req, res) => {
             filter.push({ size: { $in: Array.isArray(size) ? size : [size] } });
         }
 
-        if (keyword) {
-            filter.push({
-                $or: [
-                    { category: { $regex: keyword, $options: 'i' } },
-                    { filtercategory: { $regex: keyword, $options: 'i' } } 
-                ]
-            });
-        }
-
         const query = filter.length ? { $or: filter } : {};
 
         const products = await AllProduct.find(query);
@@ -47,7 +38,28 @@ productsRoute.get('/filter-products', async (req, res) => {
     }
 });
 
+// Search products based on a keyword
+productsRoute.get('/search-products', async (req, res) => {
+    try {
+        const { keyword } = req.query;
 
+        if (!keyword) {
+            return res.status(400).json({ status: false, message: 'Keyword is required for search.' });
+        }
+
+        const searchQuery = {
+            $or: [
+                { filtercategory: { $regex: keyword, $options: 'i' } },
+            ]
+        };
+
+        const products = await AllProduct.find(searchQuery);
+
+        res.status(200).json({ status: true, data: products });
+    } catch (error) {
+        res.status(500).json({ status: false, message: error.message });
+    }
+});
 
 
 
