@@ -1,7 +1,6 @@
 import React from 'react'
 import './checkout.css'
-import Modal from 'react-modal';
-import { useState } from 'react';
+
 
 
 function Checkout({ cart, checkoutHandler }) {

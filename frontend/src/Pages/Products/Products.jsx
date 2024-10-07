@@ -3,7 +3,7 @@ import './products.css'
 import { Filter } from "../../Components/FilterComponent/FilterComponent"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { fetchData } from "../../Redux/products/action";
 import Footer from "../../Components/Footer/footer";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -14,12 +14,7 @@ const Products = () => {
   const dispatch = useDispatch()
   const watches = useSelector((store) => store.ProductReducer.products)
 
-  // const [searchParams] = useSearchParams()
-
   useEffect(() => {
-    // let getParams = {
-    //   params: { category: searchParams.getAll("category") }
-    // }
     dispatch(fetchData())
 
   }, [dispatch])

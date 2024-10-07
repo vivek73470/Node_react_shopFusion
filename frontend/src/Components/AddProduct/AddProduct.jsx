@@ -3,7 +3,7 @@ import './index.css'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { addProducts } from '../../Redux/products/action';
+import { addProducts, startLoading, stopLoading } from '../../Redux/products/action';
 import { toast } from 'react-toastify';
 import { storage } from '../../firebase/firebase.config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -128,10 +128,10 @@ function Addproduct() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(e)
     e.preventDefault();
     if (validateForm()) {
       try {
+        dispatch(startLoading());
         // step 1
         const uniqueFileName = `${Date.now()}_${imageFile.name}`;
         const storageRef = ref(storage, `images/${uniqueFileName}`);
@@ -157,6 +157,8 @@ function Addproduct() {
       } catch (error) {
         toast.error("Failed to upload image!");
         console.error("Error uploading image:", error);
+      }finally {
+        dispatch(stopLoading());
       }
     }
   };

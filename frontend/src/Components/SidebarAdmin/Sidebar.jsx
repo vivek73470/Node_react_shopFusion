@@ -11,11 +11,13 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // takes a prop named Children.
-function Sidebar({ Children }) {
+function Sidebar({ children }) {
 
   const [isOpen, setIsOpen] = useState(true);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const handleToggle = () => {
+    setIsOpen(!isOpen); 
+  };
   const navigate = useNavigate();
 
   const menuItem = [
@@ -61,7 +63,7 @@ function Sidebar({ Children }) {
           <div className='top-section'>
           <h1 style={{ display: isOpen ? "block" : "none" }} className='logo'><span><Link to = '/'>ShopFusion</Link></span></h1>
             <div style={{ marginLeft: isOpen ? "105px" : "0px" }} className='bars'>
-              <FaBars onClick={toggle} />
+              <FaBars onClick={handleToggle} />
             </div>
           </div>
           {
@@ -89,7 +91,7 @@ function Sidebar({ Children }) {
               </button>
           </div>
         </div>
-        <main>{Children}</main>
+        <main>{children}</main>
       </div>
     </>
   )

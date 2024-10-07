@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
-            
+
         case types.FETCH_DATA_REQUEST:
             return {
                 ...state,
@@ -37,8 +37,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: payload,
+                loading: false,
                 error: '',
-                loading: false
             }
 
         case types.FETCH_DATA_FAILURE:
@@ -135,6 +135,8 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
+
+
         case types.EDIT_PRODUCT_REQUEST:
             return {
                 ...state,
@@ -149,14 +151,15 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
-
-
         case types.EDIT_PRODUCT_FAILURE:
             return {
                 ...state,
                 error: payload,
                 loading: false
             }
+
+
+
 
         case types.ADD_PRODUCT_CART_REQUEST:
             return {
@@ -173,8 +176,6 @@ const reducer = (state = initialState, action) => {
 
             }
 
-
-
         case types.ADD_PRODUCT_CART_FAILURE:
             return {
                 ...state,
@@ -182,12 +183,13 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
 
+
+
         case types.FETCH_CART_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
-
         case types.FETCH_CART_SUCCESS:
             return {
                 ...state,
@@ -201,15 +203,14 @@ const reducer = (state = initialState, action) => {
                 // const cart = [payload]; Creates a new array containing the `payload` array as a single element: [[1, 2, 3]]
 
             }
-
-
-
         case types.FETCH_CART_FAILURE:
             return {
                 ...state,
                 error: payload,
                 loading: false
             }
+
+
 
         case types.REMOVE_PRODUCT_CART_REQUEST:
             return {
@@ -271,25 +272,27 @@ const reducer = (state = initialState, action) => {
             }
 
 
-
+        // add product
         case types.ADD_PRODUCT_REQUEST:
             return {
                 ...state,
                 loading: true,
+                error: '',
             }
 
         case types.ADD_PRODUCT_SUCCESS:
             return {
                 ...state,
-                products: [...state.products, payload], // Append the new product to existing products
-                loading: false
+                products: [...state.products, payload], 
+                 loading: false,
+                error: ''
             }
 
         case types.ADD_PRODUCT_FAILURE:
             return {
                 ...state,
                 error: payload,
-                loading: false
+                loading: false,
             }
 
 

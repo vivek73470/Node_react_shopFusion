@@ -147,9 +147,10 @@ const fetchDataSuccess = (payload) => {
         payload,
     }
 }
-const fetchDataFailure = () => {
+const fetchDataFailure = (error) => {
     return {
         type: types.FETCH_DATA_FAILURE,
+        payload: error,
 
     }
 }

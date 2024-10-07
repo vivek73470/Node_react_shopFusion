@@ -3,6 +3,7 @@ import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProf, fetchUserData } from '../../Redux/auth/action';
 import { toast } from 'react-toastify';
+import { startLoading, stopLoading } from '../../Redux/products/action';
 
 function ProfileAd() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function ProfileAd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(startLoading())
       const res = await dispatch(UpdateProf(token, data));
       if (res.status) {
         toast.success("Profile updated successfully!");
@@ -66,6 +68,8 @@ function ProfileAd() {
       }
     } catch (error) {
       toast.error("An error occurred. Please try again.");
+    }finally {
+      dispatch(stopLoading());
     }
   };
 

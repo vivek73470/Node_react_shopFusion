@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editProducts, getSingleProduct } from '../../Redux/products/action';
+import { editProducts, getSingleProduct, startLoading, stopLoading } from '../../Redux/products/action';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { storage } from '../../firebase/firebase.config';
@@ -152,6 +152,7 @@ function EditProduct() {
         e.preventDefault();
         if(validateForm()){
             try {
+              dispatch(startLoading());
                 let updatedImageURL = data.image; // Default to existing image URL
     
                 // If a new image is selected, upload it to Firebase
@@ -183,6 +184,8 @@ function EditProduct() {
             } catch (e) {
                 console.error(e);
                 toast.error("An error occurred while updating the product.");
+            }finally {
+              dispatch(stopLoading());
             }
         }
 
